@@ -10,10 +10,14 @@
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#how-to-use-this-guide">2. How to use this guide</a></li>
+<li><a href="#how-to-use-this-guide">2. How to use this guide</a>
+<ul class="sectlevel2">
+<li><a href="#commands-format">2.1. Commands Format</a></li>
+</ul>
+</li>
 <li><a href="#application-overview">3. Application Overview</a>
 <ul class="sectlevel2">
-<li><a href="#application-placeholder">3.1. Application placeholder</a></li>
+<li><a href="#application-layout">3.1. Application Layout</a></li>
 <li><a href="#user-interface-layout">3.2. User Interface Layout</a></li>
 <li><a href="#navigating-the-user-interface">3.3. Navigating the User Interface</a></li>
 </ul>
@@ -68,31 +72,29 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NoteNote (NN) is for those who <strong>prefer to use a desktop app for managing multiple projects</strong>. More importantly, NN is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NN can get your project management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 4, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>NoteNote (NN), is a desktop project management system for Computing students to keep track of multiple projects and their corresponding tasks. More importantly, NN is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NN can help you to manage your tasks faster than traditional GUI apps. Have we caught your interest? Jump to  <a href="#quick-start">Section 4, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="how-to-use-this-guide"><a class="link" href="#how-to-use-this-guide">2. How to use this guide</a></h2>
 <div class="sectionbody">
-<div class="exampleblock">
-<div class="content">
+<div class="sect2">
+<h3 id="commands-format"><a class="link" href="#commands-format">2.1. Commands Format</a></h3>
 <div class="paragraph">
-<p><strong>Commands Format</strong></p>
+<p>The examples in this guide are formatted using the following convention:
+Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME, NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
-</li>
-<li>
 <p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
+<p>Items with <code>…</code> after them can be used multiple times including zero times e.g. <code>[t/TAG]…</code> can be used as (i.e. 0 times), <code>t/friend</code>, <code>t/friend</code> <code>t/family</code> etc.</p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME</code> <code>p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER</code> <code>n/NAME</code> is also acceptable.</p>
 </li>
 <li>
 <p>The <code>add</code>, <code>edit</code> and <code>delete</code> commands each have a shorthand equivalent alias, and their usage can be viewed below at their respective sections in the User Guide.</p>
@@ -102,26 +104,54 @@
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
 <h2 id="application-overview"><a class="link" href="#application-overview">3. Application Overview</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="application-placeholder"><a class="link" href="#application-placeholder">3.1. Application placeholder</a></h3>
+<h3 id="application-layout"><a class="link" href="#application-layout">3.1. Application Layout</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/apporg.png" alt="apporg" width="790">
+</div>
+</div>
 <div class="paragraph">
-<p><strong>insert picture</strong>, what panel show what info, where to type command</p>
+<p>The application has two layers, the project layer and the task layer, as shown in Figure 1 above. There are some commands which work differently based on the layer they are in. This is covered in detail in Sections 6 and 7. The project layer contains all the projects the user has added while the task layer contains the tasks and subtasks assigned to a particular project.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="user-interface-layout"><a class="link" href="#user-interface-layout">3.2. User Interface Layout</a></h3>
-<div class="paragraph">
-<p>introduce the "project level" and "task level"
-hyper link to project level commands &amp; hyper link to task level commands</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/applayout.png" alt="applayout" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Panel A: Command Box</strong> - Where your commands will be typed</p>
+</li>
+<li>
+<p><strong>Panel B: Results Box</strong> - Displays result for the following commands: history, taskhistory, compare,  listtag; else displays either success / error message for all other commands.</p>
+</li>
+<li>
+<p><strong>Panel C: Project Box</strong> - Displays list of project</p>
+</li>
+<li>
+<p><strong>Panel D: Task Box</strong> - Displays list of tasks for a selected project</p>
+</li>
+<li>
+<p><strong>Panel E: Description Box</strong> - Displays long description for a selected task</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="navigating-the-user-interface"><a class="link" href="#navigating-the-user-interface">3.3. Navigating the User Interface</a></h3>
-
+<div class="paragraph">
+<p>Panel <strong>A</strong>, <strong>C</strong>, <strong>D</strong> are user-interactable while panels <strong>B</strong>, <strong>E</strong> are non-interactable.
+Panel A will always be active, allowing you to input your commands at any time
+Upon first opening of the application, your active panel will start from <strong>C</strong>, and only upon choosing a project will your active panel change to <strong>D</strong>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -141,37 +171,28 @@ hyper link to project level commands &amp; hyper link to task level commands</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
-</div>
-</div>
 </li>
 <li>
-<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+<p>Type the command in the command box or <strong>Panel A</strong> (refer to Figure 2) and press Enter to execute it.</p>
 </li>
 <li>
 <p>Some example commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all contacts</p>
+<p><strong><code>listproject</code></strong> : lists all projects</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><strong><code>select 1</code></strong> : selects the project at index 1</p>
 </li>
 <li>
-<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
+<p><strong><code>add n/Do research on Singapore history dl/1-1-2020</code></strong> : adds a task of title “Do research on Singapore History” with a deadline set at “1st January 2020” to the project previously selected.</p>
 </li>
 <li>
-<p><strong><code>exit</code></strong> : exits the app</p>
+<p><strong><code>delete 1</code></strong> : deletes the task being shown at index 1</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Refer to <a href="#Features">Section 10, &#8220;Features (to be removed)&#8221;</a> for details of each command.</p>
 </li>
 </ol>
 </div>
@@ -1533,4 +1554,4 @@ There is no need to save manually.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-22 05:24:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-22 05:59:34 UTC</div></div></div></body></html>
