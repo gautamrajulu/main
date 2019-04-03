@@ -13,7 +13,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/CS2113-AY1819S2-T09-3/main
 
 By: `Team CS2113T T09-3`      Since: `Mar 2019`      Licence: `MIT`
 
@@ -123,7 +123,7 @@ Examples:
 
 Outcome: Project Box (Panel C) will show the updated project with the new name.
 
-==== List projects: `listprojects`
+==== List projects: `listproject`
 Lists all projects, is also used to switch back to project list from task list.
 
 * Format: `listproject`
@@ -154,31 +154,31 @@ List all unique tags and associated tasks within a project
 
 Outcome: Result Box (Panel B) will will display all unique tags and associated tasks within a project.
 
-==== Defining a group tag: definetag
+==== Defining a group tag: `definetag`
 
 Define a group tag when you want to add multiple identical tags to multiple tasks easily.
 
 After defining a group tag, use the addtag command to add a group tag to a task of your choice.
 
-* Format: definetag gt/GROUPTAG t/TAG [t/MORETAGS]
-* Alias: dt, i.e. definetag is equivalent to dt
+* Format: `definetag gt/GROUPTAG t/TAG [t/MORETAGS]`
+* Alias: `dt`, i.e. `definetag` is equivalent to `dt`
 
 Example:
 
-* definetag gt/SAMPLE t/TAG1 t/TAG2
+* `definetag gt/SAMPLE t/TAG1 t/TAG2`
 
 Outcome: A group tag called SAMPLE will be created which would contain tags TAG1 and TAG2.
 
-==== Adding a group tag: addtag
+==== Adding a group tag: `addtag`
 
 Add a previously defined group tag to a task.
 
-* Format: addtag INDEX gt/GROUPTAG
-* Alias: at, i.e. addtag is equivalent to at
+* Format: `addtag INDEX gt/GROUPTAG`
+* Alias: `at`, i.e. `addtag` is equivalent to `at`
 
 Example:
 
-* addtag 1 gt/SAMPLE
+* `addtag 1 gt/SAMPLE`
 
 Outcome: Task Box (Panel D) will show the updated task with newly added tags.
 
@@ -200,7 +200,7 @@ Examples:
 * `import C:\Users\Test\Desktop\import.json`
 
 [TIP]
-The full path to the JSON file has to be specified unless the file is contained within the application folder. If JSON file is contained in application folder, `import ./test.json` is sufficient.
+The full path to the JSON file has to be specified unless the file is contained within the application folder. If JSON file is contained in application folder, `import .\test.json` is sufficient.
 
 Outcome: Projects and tasks contained in JSON file will be imported and added on top of current project list. Command box will display number of projects added to project list.
 
@@ -216,19 +216,15 @@ Examples:
 * To export currently selected project: `export o/C:\Users\Test\Desktop\export.json`
 
 [TIP]
-Output path should be explicitly specified unless the output is to be within the application folder. If output is to be contained in application folder, the `export i/1,2,3 o/./test.json` is sufficient.
+Output path should be explicitly specified unless the output is to be within the application folder. If output is to be contained in application folder, the `export i/1,2,3 o/.\test.json` is sufficient.
 
 Outcome: JSON file will be created at output path specified.
 
 ==== Analyse progress of all projects: `analyse`
-View number of completed and uncompleted tasks of each project within a specified timeframe.
+View number of completed and uncompleted tasks of each project.
 
-* Format: `analyse DATE_1 [DATE_2]`
+* Format: `analyse`
 * Alias: `an`, i.e. `analyse` is equivalent to `an`
-
-Examples:
-
-* `analyse 1-1-2020`
 
 Outcome: Task Box (Panel D) will display all tasks within selected project. Active panel is now Panel D and all commands that is executed after this would be in the context of tasks.
 
@@ -259,7 +255,7 @@ Affects panel D.
 
 Adds a task to the project identified by the index number used in the displayed project list.
 
-* Format: `add n/NAME [d/DESCRIPTION] [dl/DEADLINE] [t/TAG]`
+* Format: `add n/NAME [ds/DESCRIPTION] [dl/DEADLINE] [t/TAG]`
 * Alias: `a`, i.e. `add` is equivalent to `a`
 
 [TIP]
@@ -275,12 +271,12 @@ Outcome: Task Box (Panel D) will show the newly created task `Decide on Research
 
 Edits an existing task identified by the index number used in the displayed task list.
 
-* Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [dl/DEADLINE] [t/TAG]...`
+* Format: `edit INDEX [n/NAME] [ds/DESCRIPTION] [dl/DEADLINE] [t/TAG]...`
 
 * Alias: `e`, i.e. `edit` is equivalent to `e`
 
 [TIP]
-At least 1 among the parameters of `[n/NAME] [d/DESCRIPTION] [dl/DEADLINE] [t/TAG]` must be included within the command.
+At least 1 among the parameters of `[n/NAME] [ds/DESCRIPTION] [dl/DEADLINE] [t/TAG]` must be included within the command.
 
 Example:
 
@@ -330,11 +326,6 @@ The index *must be a positive integer* 1, 2, 3, …
 
 Examples:
 
-1. `list` +
-2. `delete 2`
-
-Outcome: Task Box (Panel D) will no longer display the second task in the project.
-
 1. `find Consult` +
 2. `delete 1`
 
@@ -342,7 +333,7 @@ Outcome: Task Box (Panel D) will no longer display the first task in the results
 
 ==== Completing a task: `completed`
 
-Marks the specified task identified by the index number used in the displayed task list as completed and removes it from view.
+Marks the specified task identified by the index number used in the displayed task list as completed by adding a `completed` tag to it.
 
 * Format: `completed INDEX`
 
@@ -353,10 +344,9 @@ Completed tasks will be used as statistics for the `analyse` feature, unlike del
 
 Examples:
 
-1. `select 2` +
-2. `completed 1`
+* `completed 1`
 
-Outcome: Task Box (Panel D) will no longer display the first task in the second project.
+Outcome: Task Box (Panel D) will show a `completed` tag for the first task.
 
 ==== Selecting a task: `select`
 
@@ -381,18 +371,13 @@ Examples:
 
 Outcome: Selects the first task in the results of the `find` command. Description Box (Panel E) will display all the details of the task selected.
 
-==== Sorting tasks: `sort`
-Sorts tasks by specified category.
+==== Sorting tasks: `listDeadline`
+Sorts tasks by deadline.
 
-* Format: `sort CATEGORY [ascend|descend]`
-* Sorts the tasks that are currently displayed by name, deadline and tags
+* Format: `listDeadline`
 
-Example:
-
-`sort deadline descend`
-
-Outcome: Task Box (Panel D) will be updated to display tasks sorted by their name
-         in descending order.
+Outcome: Task Box (Panel D) will be updated to display tasks sorted by their deadline
+         in ascending order.
 
 ==== Undo previous command : `undo`
 
@@ -476,23 +461,6 @@ Outcome: Task Box (Panel B) will display information of current version of the t
          index 1 ( _sample task_ ) and the previous version of it ( _sample task edited_ ).
          Allows you to view a direct comparison of what was changed.
 
-==== Define group tags: `group`
-
-Group existing tags in the system.
-
-* Format: `group gt/GROUPTAGNAME [t/TAG]`
-* Alias: `g`, i.e. `group` is equivalent to `g`
-
-Examples:
-
-* `group gt/Task Completed t/To Review t/To Merge`
-
-[TIP]
-At least 2 `[t/TAG]` parameters must be specified.
-
-Outcome: Results Box (Panel B) will show the newly created group tag `Task completed` with its relevant tags `To Review` and `To Merge` respectively.
-
-
 == FAQ
 
 *Q*: How do I transfer my data to another computer? +
@@ -523,7 +491,7 @@ Outcome: Results Box (Panel B) will show the newly created group tag `Task compl
 |`history`|View all commands previously entered
 |`import`|Import projects from external JSON file
 |`list`|List all projects or tasks
-|`listdeadline`| List tasks according to deadline
+|`listDeadline`| List tasks according to deadline
 |`listproject`|Go back to project list panel from task list panel
 |`listtags`|List all unique tags and associated tasks within a project
 |`redo`|Redo modifications made to task
