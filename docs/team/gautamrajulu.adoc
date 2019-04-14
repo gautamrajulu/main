@@ -36,11 +36,16 @@ I contributed to the development of NoteNote via two functions, sortDeadline and
 *** PRs reviewed: https://github.com/CS2113-AY1819S2-T09-3/main/pull/[181] https://github.com/CS2113-AY1819S2-T09-3/main/pull/[185]
 
 == Contributions to the User Guide
+Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.
 
+Legend for User Guide:
 
-|===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
-|===
+[TIP]
+This is a tip. Follow these suggested tips to make your life much simpler when using *NoteNote*!
+
+[NOTE]
+This is a note. These are things for you to take note of when using *NoteNote*.
+
 
 include::../UserGuide.adoc[tag=listproject]
 
