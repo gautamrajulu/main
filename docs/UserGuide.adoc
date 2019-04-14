@@ -57,7 +57,7 @@ This is a note. These are things for you to take note of when using *NoteNote*.
 // tag::UIlayout[]
 === User Interface Layout
 
-image::applayout.png[width="790"]
+image::applayout.png[width="790", title="Application interface"]
 
 * *Panel A: Command Box* - Where your commands will be typed
 * *Panel B: Results Box* - Displays result for the following commands: history, taskhistory, compare,  listtag; else displays either success / error message for all other commands.
@@ -74,7 +74,7 @@ Upon first opening of the application, your active panel will start from *C*, an
 
 === Application Layout
 
-image::Ui.png[width="790"]
+image::Ui.png[width="790", title="Application layout"]
 
 The application has two levels, the project level and the task level, as shown. There are some commands that only works on certain levels. This is covered in detail in Sections 6 and 7. The project level contains all the projects the user has added while the task level contains the tasks of a particular project.
 
@@ -90,7 +90,7 @@ Refer to diagrams below on what you should expect to see when you are in the res
 .  Download the latest `notenote.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
-.  Type the command in the command box or *Panel A* (refer to Figure 2) and press Enter to execute it.
+.  Type the command in the command box or *Panel A* (refer to Figure 1) and press Enter to execute it.
 .  Some example commands you can try:
 * *`listproject`* : lists all projects
 * **`select 1`** : selects the project at index 1
@@ -553,7 +553,7 @@ Outcome:
 image::taskhistorysample.png[width="900", title="Example Outcome for `taskhistory` command"]
 
 Results Box (Panel B) will display all previous commands which directly
-affects the task at index 1 (Figure 6).
+affects the task at index 1 (Figure 11).
 // end::taskhistory[]
 
 // tag::compare[]
@@ -591,9 +591,54 @@ Outcome:
 image::comparesample.png[width="900", title="Example Outcome for `compare` command"]
 
 Task Box (Panel B) will display information of current version of the task at
-         index 1 ( _sample task_ ) and the previous version of it ( _sample task edited_ ) (Figure 7).
+         index 1 ( _sample task_ ) and the previous version of it ( _sample task edited_ ) (Figure 12).
          Allows you to view a direct comparison of what was changed.
 // end::compare[]
+
+== Future Enhancements [coming in v2.0]
+
+==== Analyse progress of all projects: `analyse`
+
+Current `analyse` feature will show number of completed tasks for each project, and percentage of each project completed.
+
+Future enhancement of `analyse` will be more comprehensive, displaying *visual graphs, charts & tables*
+
+==== Undo per task `undotask`
+
+Current `undo` feature is a general execution on the overall commands that is executed.
+
+`undotask` will allow you to "undo" a command that is executed on the selected task.
+
+* Format: `undotask INDEX`
+
+Example :
+
+*  `edit 1 n/edited_name` ...
+
+Outcome: Task Box (Panel D) will update the name for the task at index 1 to reflect the new edited name.
+
+*  `undotask 1`
+
+Outcome: Task Box (Panel D) will update the name for the task at index 1 to reflect the previous name before the edit.
+
+==== Redo per task `redotask`
+
+Current `redo` feature is a general execution on the overall undo command that is executed.
+
+`redotask` will allow you to "redo" from a `undotask` that is executed on the selected task.
+
+* Format: `redotask INDEX`
+
+Example :
+
+*  `undotask 1`
+
+Outcome: Task Box (Panel D) will update the name for the task at index 1 to reflect the previous name before the edit.
+
+*  `redotask 1`
+
+Outcome: Task Box (Panel D) will update the name for the task at index 1 to reflect the name before `undotask` was executed.
+
 
 == FAQ
 

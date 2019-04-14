@@ -13,20 +13,23 @@ NoteNote is a desktop project application allowing you to manage multiple projec
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to view command history for each individual task*
-** What it does: allows you to view a command history of a chosen task with the command `taskhistory`. The command history will include commands that have a direct impact on the task (e.g. `edit` / `completed` / `addtag` / `delete`)
+My main contributions to NoteNote is the implementation of 2 of my features, `taskhistory` and `compare`.
+I have also contributed to the team by helping manage version releases and ensuring deliverables are met.
 
-** Justification: Current implementation will only allow you to view the command history of every command (valid & invalid) that has been entered.
+* *Major enhancement*: added *the ability to view command history for each individual task*
+** *What it does*: allows you to view a command history of a chosen task with the command `taskhistory`. The command history will include commands that have a direct impact on the task (e.g. `edit` / `completed` / `addtag` / `delete`)
+
+** *Justification*: Current implementation will only allow you to view the command history of every command (valid & invalid) that has been entered.
 But when handling multiple large projects, a user is bound to have numerous edits for the many task that is there.
 In this case the likelihood of a user forgetting / executing a wrong command is very probable. Thus, this feature allows a user
 to view a record of the changes he made for a specific task instead of viewing it as a whole project. Allowing easy referencing for a user.
-** Highlights: This feature is implemented by creating another stack parallel to the existing command history stack. This new stack will contain the unique ID of a task corresponding
+** *Highlights*: This feature is implemented by creating another stack parallel to the existing command history stack. This new stack will contain the unique ID of a task corresponding
 to the command of the same index in the command history.
 
 * *Minor enhancement*: added *the ability to compare a task to its previous version*
-** What it does: allows you to view a direct comparison of a chosen task against its previous version before the edit with the command `compare`
-** Justification: To allow easy referencing for a chosen task in a neater method as this feature compares the differences and will only show you the result of the field (Name / Description / Deadline) that was changed, instead of all the fields.
-** Highlights: Current `undo` feature is implemented as general undo for all commands.
+** *What it does*: allows you to view a direct comparison of a chosen task against its previous version before the edit with the command `compare`
+** *Justification*: To allow easy referencing for a chosen task in a neater method as this feature compares the differences and will only show you the result of the field (Name / Description / Deadline) that was changed, instead of all the fields.
+** *Highlights*: Current `undo` feature is implemented as general undo for all commands.
 This `compare` feature serves as a base for a future feature which allows `undo` for a specific task.
  ***   You will be able to `undo` to the version that is shown when `compare` executes.
 
