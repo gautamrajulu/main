@@ -1,9 +1,15 @@
 package seedu.project.logic.commands;
 
-import javafx.collections.ObservableList;
+import static seedu.project.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.project.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.project.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.project.testutil.TypicalTasks.getTypicalProjectList;
+import static seedu.project.logic.commands.SortByDeadlineCommand.MESSAGE_SUCCESS_TASK;
 
-import javafx.collections.transformation.SortedList;
 import org.junit.Test;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 import seedu.project.commons.core.Messages;
 import seedu.project.logic.CommandHistory;
@@ -18,11 +24,7 @@ import seedu.project.model.task.Task;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import static seedu.project.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.project.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.project.model.Model.PREDICATE_SHOW_ALL_TASKS;
-import static seedu.project.testutil.TypicalTasks.getTypicalProjectList;
-import static seedu.project.logic.commands.SortByDeadlineCommand.MESSAGE_SUCCESS_TASK;
+
 
 public class SortByDeadlineCommandTest {
     private Model model = new ModelManager(getTypicalProjectList(), new Project(), new UserPrefs());
@@ -34,7 +36,8 @@ public class SortByDeadlineCommandTest {
         LogicManager.setState(true);
         model.setSelectedProject(null);
         SortByDeadlineCommand sortByDeadlineCommand = new SortByDeadlineCommand();
-        String expectedMessage = String.format(Messages.MESSAGE_RETURN_TO_PROJECT_LEVEL, SortByDeadlineCommand.COMMAND_WORD);
+        String expectedMessage = String.format(Messages.MESSAGE_RETURN_TO_PROJECT_LEVEL,
+                SortByDeadlineCommand.COMMAND_WORD);
         assertCommandFailure(sortByDeadlineCommand, model, commandHistory, expectedMessage);
     }
 
@@ -107,6 +110,7 @@ public class SortByDeadlineCommandTest {
 
         SortByDeadlineCommand sortCommand = new SortByDeadlineCommand();
 
-        assertCommandSuccess(sortCommand, expectedModel, commandHistory, SortByDeadlineCommand.MESSAGE_SUCCESS_TASK, model);
+        assertCommandSuccess(sortCommand, expectedModel, commandHistory,
+                SortByDeadlineCommand.MESSAGE_SUCCESS_TASK, model);
     }
 }
