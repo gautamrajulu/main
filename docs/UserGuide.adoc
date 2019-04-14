@@ -30,7 +30,7 @@ So just head over to our <<Quick Start>> section and begin your NoteNote experie
 
 == How to use this guide
 
-There are several terms which we use throughout our guide. To make your life easier, please do read the following section to ensure that you are able to use our User Guide to the fullest extent!
+There are several terms which we use throughout our guide. To make your life easier, please do read the following sections to ensure that you are able to use our User Guide to the fullest extent!
 
 === Commands Format
 
@@ -40,16 +40,19 @@ Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/Sample Task 1 t/SAMPLE` or as `n/Sample Task 1`.
 * Items with `…` after them can be used multiple times including zero times e.g. `[t/TAG]…` can be used as (i.e. 0 times), `t/CS2101`, `t/SEM1` `t/SCHOOL` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME` `ds/DESCRIPTION`, `ds/DESCRIPTION` `n/NAME` is also acceptable.
-* The `add`, `edit` and `delete` commands each have a shorthand equivalent alias, and their usage can be viewed below at their respective sections in the User Guide.
+* All commands each have a shorthand equivalent alias, and their usage can be viewed below at their respective sections in the User Guide.
 
+=== Icons Meaning
+
+Various icons are also used throughout this user guide with the following context:
+
+[TIP]
+This is a tip. Follow these suggested tips to make your life much simpler when using *NoteNote*!
+
+[NOTE]
+This is a note. These are things for you to take note of when using *NoteNote*.
 
 == Application Overview
-
-=== Application Layout
-
-image::apporg.png[width="790"]
-
-The application has two layers, the project layer and the task layer, as shown in Figure 1 above. There are some commands which work differently based on the layer they are in. This is covered in detail in Sections 6 and 7. The project layer contains all the projects the user has added while the task layer contains the tasks and subtasks assigned to a particular project.
 
 // tag::UIlayout[]
 === User Interface Layout
@@ -68,6 +71,16 @@ Panel A will always be active, allowing you to input your commands at any time.
 
 Upon first opening of the application, your active panel will start from *C*, and only upon choosing a project will your active panel change to *D*.
 // end::UIlayout[]
+
+=== Application Layout
+
+image::Ui.png[width="790"]
+
+The application has two levels, the project level and the task level, as shown. There are some commands that only works on certain levels. This is covered in detail in Sections 6 and 7. The project level contains all the projects the user has added while the task level contains the tasks of a particular project.
+
+When you are in the project level, the Project Box (Panel C) will be active and unshaded while the Task Box (Panel D) will be inactive and shaded. Similarly, when you are in the task level, the Project Box (Panel C) will be inactive and shaded and the Task Box (Panel D) will be active and unshaded.
+
+Refer to diagrams below on what you should expect to see when you are in the respective levels.
 
 
 == Quick Start

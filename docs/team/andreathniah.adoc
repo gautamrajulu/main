@@ -5,17 +5,25 @@
 
 == PROJECT: NoteNote
 
----
+**NoteNote** is the go-to task management tool built for computing students to keep track of all their tasks right at their fingertips. With a minimalistic command line interface that users would be more than familiar with as computing students, NoteNote is an efficient too that allows users to analyze their productivity, categorize their tasks and many more!
+
+This application was developed by a https://cs2113-ay1819s2-t09-3.github.io/main/AboutUs.html[team of five] as part of CS2113T, a software engineering module at National University of Singapore.
 
 == Overview
 
-**NoteNote** is the go-to task management tool built for computing students to keep track of all your task right at your fingertips. With a minimalistic command line interface which users would be more than familiar with as computing students, NoteNote is an efficient tool that sorts through tasks quicky and efficiently. NoteNote also allows users to analyze their productivity, categorize their tasks, share tasks with their friends and many more.
+Throughout this portfolio, various icons and terminologies used to describe the application are used. Here's what they mean:
+
+[TIP]
+This is a tip. Follow these suggested tips to make your life much simpler when using *NoteNote*!
+
+[NOTE]
+This is a note. These are things for you to take note of when using *NoteNote*.
 
 .Application Layout
 image::DemoLayout.png[width="600"]
 
 == Summary of contributions
-The introduction of group tags, a feature split into two seperate commands, are my main contributions to NoteNote. I also worked on enhancing the `listtag` feature and refactoring the original AddressBook into NoteNote.
+The introduction of group tags, a feature split into two separate commands, are my main contributions to NoteNote. I also worked on enhancing the `listtag` feature and refactoring the original AddressBook into NoteNote.
 
 * *Major enhancement*: added *the ability to create group tags and apply them to tasks*
 ** What it does: allows users to create a group tag and add multiple child tags into it
@@ -29,7 +37,7 @@ The introduction of group tags, a feature split into two seperate commands, are 
 * *Other contributions*:
 
 ** Project management:
-*** Handled all Github related issues that arised within the team (merge conflicts, rebasing etc)
+*** Handled all GitHub related issues that arise within the team (merge conflicts, rebasing etc)
 *** Managed releases `v1.0` - `v1.4` (4 releases) on GitHub
 ** Enhancements to existing features:
 *** Morphing AB4 to NoteNote: [https://github.com/CS2113-AY1819S2-T09-3/main/pull/31[#31]], [https://github.com/CS2113-AY1819S2-T09-3/main/pull/33[#33]]

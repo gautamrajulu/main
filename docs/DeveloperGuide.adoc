@@ -17,6 +17,29 @@ endif::[]
 
 By: `T09-3`      Since: `22 Feb 2019`      Licence: `MIT`
 
+== Introduction
+Welcome to NoteNote (NN)!
+
+If you're looking for an application to organize your projects you've come to the right place! But that's not all NoteNote can do! NoteNote can also keep track of individual tasks, analyze your productivity and share your To-Do list with your friends!
+
+We designed the application ground up for computing students, so you can say that NoteNote is designed for computing students, by computing students, so you can be sure that it will fulfil all your project management needs!
+
+Built for computing students, NoteNote uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the benefits of the GUI. So if you can type fast and are used to command line, NoteNote is sure to help manage your task faster than other traditional GUI based task managers.
+
+== How to use this guide
+
+There are several terms which we use throughout our guide. To make your life easier, please do read the following section to ensure that you are able to use our Developer Guide to the fullest extent!
+
+=== Icons Meaning
+
+Various icons are also used throughout this user guide with the following context:
+
+[TIP]
+This is a tip. Follow these suggested tips to make your life much simpler when using *NoteNote*!
+
+[NOTE]
+This is a note. These are things for you to take note of when using *NoteNote*.
+
 == Setting up
 
 === Prerequisites
