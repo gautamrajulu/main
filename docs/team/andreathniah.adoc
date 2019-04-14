@@ -12,7 +12,7 @@
 **NoteNote** is the go-to task management tool built for computing students to keep track of all your task right at your fingertips. With a minimalistic command line interface which users would be more than familiar with as computing students, NoteNote is an efficient tool that sorts through tasks quicky and efficiently. NoteNote also allows users to analyze their productivity, categorize their tasks, share tasks with their friends and many more.
 
 .Application Layout
-image::demolayout.png[width="600"]
+image::DemoLayout.png[width="600"]
 
 == Summary of contributions
 The introduction of group tags, a feature split into two seperate commands, are my main contributions to NoteNote. I also worked on enhancing the `listtag` feature and refactoring the original AddressBook into NoteNote.
