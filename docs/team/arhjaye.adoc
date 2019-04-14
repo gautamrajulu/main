@@ -33,7 +33,7 @@ to the command of the same index in the command history.
 This `compare` feature serves as a base for a future feature which allows `undo` for a specific task.
  ***   You will be able to `undo` to the version that is shown when `compare` executes.
 
-* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=arhjaye&tabRepo=CS2113-AY1819S2-T09-3_main_master&sort=displayName&since=2019-02-10&until=2019-04-01[Reposense]]
+* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=arhjaye[Functional code]]
 
 * *Other contributions*:
 
