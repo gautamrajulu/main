@@ -1375,6 +1375,16 @@ Expected:  Since `edit`/`completed`/`addtag`/`delete` has not been executed on t
    Expected: No `completed` tag is added to any task in Task Box. Results Box displays error message "The task index provided is invalid".
 .. Other incorrect completed commands to try: `completed 1 2`, `completed`, `completed x` (where x is not a valid index)
 
+=== Sort Tasks by Deadline
+
+. Sorts task in current project by deadline
+
+.. Prerequisites:
+    * There sould at least be 2 tasks in the project
+    * Tasks should not be sorted by deadline
+.. Test case: `sort` +
+   Expected: Tasks should be sorted according to deadline i.e. task with the deadline closest to current date should be first
+
 === Analysing projects
 
 . Displays number of completed tasks for each project, and percentage of each project completed
