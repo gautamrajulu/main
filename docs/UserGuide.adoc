@@ -138,13 +138,19 @@ Examples:
 
 Outcome: Project Box (Panel C) will show the updated project with the new name.
 
+// tag::listproject[]
 ==== List projects: `listproject`
-Lists all projects, is also used to switch back to project list from task list.
+Command has two functions. Firstly, it lists all projects. Secondly, it is used for navigation to switch from the task
+list back to the project list.
 
 * Format: `listproject`
 * Alias: `lp`, i.e. `listproject` is equivalent to `lp`
 
 Outcome: Project Box (Panel C) will will display all projects within project list.
+
+.After executing `listproject`
+image::listprojectResult.png[width:800m]
+// end::listproject[]
 
 ==== Select a project: `select`
 Selects a project identified by the index number used in the displayed project list.
@@ -382,12 +388,22 @@ Examples:
 
 Outcome: Returns tasks containing the keyword `Research`. Task Box (Panel D) will be updated to display only tasks that matches the keyword.
 
+// tag::list[]
 ==== Listing all tasks: `list`
 Lists all tasks in the current project. Can also be used to show all tasks after finding a specific tasks
 
 * Format: `list`
 
 * Alias: `l`, i.e. `list` is equivalent to `l`
+
+Outcome: Task Box (Panel D) will display all tasks in the current project
+
+[NOTE]
+====
+`list` should be used in the task level but if used in the project level, it will act similarly to
+<<List all tags: `listtag`>>
+====
+// end::list[]
 
 // tag::listtag[]
 ==== List all tags: `listtag`
@@ -396,7 +412,7 @@ List all unique tags and associated tasks within a project
 * Format: `listtag`
 * Alias: `lt`, i.e. `listtag` is equivalent to `lt`
 
-Outcome: Result Box (Panel B) will will display all unique tags and associated tasks within a project.
+Outcome: Result Box (Panel B) will display all unique tags and associated tasks within a project.
 
 .After executing `listtag`
 image::AfterListTag.png[width="800"]
@@ -468,13 +484,22 @@ Examples:
 
 Outcome: Selects the first task in the results of the `find` command. Description Box (Panel E) will display all the details of the task selected.
 
-==== Sorting tasks: `listDeadline`
-Sorts tasks by deadline.
+// tag::sortDeadline[]
+==== Sorting tasks: `sortDeadline`
+Sorts the tasks in the current project by deadline.
 
-* Format: `listDeadline`
+* Format: `sortDeadline`
+* Alias: `sd`
 
 Outcome: Task Box (Panel D) will be updated to display tasks sorted by their deadline
          in ascending order.
+
+.After executing `sortDeadline`
+image::sortbydeadlineResults.png[width:800mm]
+
+[TIP]
+Only sort after adding new tasks. Sorted tasks will remain in that order.
+// end::sortDeadline[]
 
 ==== Undo previous command : `undo`
 
@@ -669,7 +694,7 @@ Outcome: Task Box (Panel D) will update the name for the task at index 1 to refl
 |`history`|View all commands previously entered
 |`import`|Import projects from external JSON file
 |`list`|List all projects or tasks
-|`listDeadline`| List tasks according to deadline
+|`sortDeadline`| Sorts tasks according to deadline
 |`listproject`|Go back to project list panel from task list panel
 |`listtag`|List all unique tags and associated tasks within a project
 |`redo`|Redo modifications made to task
