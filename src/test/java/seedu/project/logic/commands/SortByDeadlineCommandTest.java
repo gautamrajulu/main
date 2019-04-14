@@ -20,8 +20,8 @@ import seedu.project.model.project.Project;
 import seedu.project.model.project.VersionedProject;
 import seedu.project.model.task.Task;
 
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import javafx.collections.ObservableList;
 
 public class SortByDeadlineCommandTest {
     private Model model = new ModelManager(getTypicalProjectList(), new Project(), new UserPrefs());
