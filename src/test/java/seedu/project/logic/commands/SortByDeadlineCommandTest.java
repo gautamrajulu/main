@@ -10,7 +10,6 @@ import java.util.Comparator;
 
 import org.junit.Test;
 
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 
