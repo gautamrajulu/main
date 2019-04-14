@@ -578,7 +578,7 @@ Outcome:
 image::taskhistorysample.png[width="900", title="Example Outcome for `taskhistory` command"]
 
 Results Box (Panel B) will display all previous commands which directly
-affects the task at index 1 (Figure 11).
+affects the task at index 1 (Figure 13).
 // end::taskhistory[]
 
 // tag::compare[]
@@ -616,7 +616,7 @@ Outcome:
 image::comparesample.png[width="900", title="Example Outcome for `compare` command"]
 
 Task Box (Panel B) will display information of current version of the task at
-         index 1 ( _sample task_ ) and the previous version of it ( _sample task edited_ ) (Figure 12).
+         index 1 ( _sample task_ ) and the previous version of it ( _sample task edited_ ) (Figure 14).
          Allows you to view a direct comparison of what was changed.
 // end::compare[]
 

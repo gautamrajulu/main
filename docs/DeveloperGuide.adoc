@@ -712,7 +712,7 @@ The list will store `0` for all other commands.
 
 image::taskhistoryseq.png[width="650", title="Sequence Diagram for `taskhistory` Command"]
 
-Given above (Figure 17) is the sequence diagram when `taskhistory` is called.
+Given above (Figure 19) is the sequence diagram when `taskhistory` is called.
 
 It is facilitated by `CommandHistory` and implements the following operations:
 
@@ -732,12 +732,12 @@ Step 3. If `commandList` is not empty, it will be printed in reverse order(newes
 
 image::ViewTaskHistorySeq1.png[width="650", title="Behaviour of userTaskHistoryTaskId during `add` commands"]
 
-Note the behaviour of useTaskHistoryTaskId when all other commands (*not* `edit`/`completed`/`addtag`/`delete`) is called (Figure 18). `CommandHistory#addHistoryTaskId()` will not be called thus `userInputHistoryTaskId` will not be updated.
+Note the behaviour of useTaskHistoryTaskId when all other commands (*not* `edit`/`completed`/`addtag`/`delete`) is called (Figure 20). `CommandHistory#addHistoryTaskId()` will not be called thus `userInputHistoryTaskId` will not be updated.
 However `userInputHistory` will still be updated as usual.
 
 image::ViewTaskHistorySeq2.png[width="650", title="Behaviour of userTaskHistoryTaskId during `edit` commands"]
 
-Note the behaviour when a `edit` command  is called (Figure 19). `CommandHistory#addHistoryTaskId()` will be called thus `userInputHistoryTaskId` will be updated with the taskId of the task where the
+Note the behaviour when a `edit` command  is called (Figure 21). `CommandHistory#addHistoryTaskId()` will be called thus `userInputHistoryTaskId` will be updated with the taskId of the task where the
 `edit` command is called on. Observe that positions of previous non-`edit` command will be filled with `0`. `userInputHistory` will still be updated as usual.
 
 ==== Design Considerations
