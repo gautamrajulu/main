@@ -35,6 +35,15 @@ public class AddTagCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
+    public void execute_listAtProjectLevel_failure() {
+        model.setSelectedTask(null);
+        LogicManager.setState(false);
+        ListTagCommand listTagCommand = new ListTagCommand();
+        String expectedMessage = String.format(Messages.MESSAGE_GO_TO_TASK_LEVEL, listTagCommand.COMMAND_WORD);
+        assertCommandFailure(listTagCommand, model, commandHistory, expectedMessage);
+    }
+
+    @Test
     public void execute_invalidIndex_failure() {
         model.setProject(model.getFilteredProjectList().get(0));
         model.setSelectedProject(model.getFilteredProjectList().get(0));
@@ -57,8 +66,8 @@ public class AddTagCommandTest {
 
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
-        TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task taskToComplete = taskInList.withTags(VALID_TAG_CS2101, VALID_TAG_CP2106).build();
+        TaskBuilder listOfTask = new TaskBuilder(lastTask);
+        Task taskWithGroup = listOfTask.withTags(VALID_TAG_CS2101, VALID_TAG_CP2106).build();
 
         Set<Tag> sampleTargetSet = new HashSet<Tag>(
                 Arrays.asList(new Tag(VALID_TAG_CS2101), new Tag(VALID_TAG_CP2106)));
@@ -76,7 +85,7 @@ public class AddTagCommandTest {
 
         LogicManager.setState(true);
 
-        expectedModel.setTask(lastTask, taskToComplete);
+        expectedModel.setTask(lastTask, taskWithGroup);
         expectedModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         expectedModel.commitProject();
 
@@ -86,7 +95,6 @@ public class AddTagCommandTest {
 
         assertCommandFailure(addTagCommand, model, commandHistory, expectedMessage);
     }
-
 
     @Test
     public void execute_validIndexWithDefineTag_success() {
@@ -99,11 +107,11 @@ public class AddTagCommandTest {
 
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
-        TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task taskToComplete = taskInList.withTags(VALID_TAG_CS2101, VALID_TAG_CP2106, "TUTORIAL").build();
+        TaskBuilder listOfTask = new TaskBuilder(lastTask);
+        Task taskWithGroup = listOfTask.withTags(VALID_TAG_CS2101, VALID_TAG_CP2106, "TUTORIAL").build();
 
         int taskId = lastTask.getTaskId();
-        taskToComplete.updateTaskId(taskId);
+        taskWithGroup.updateTaskId(taskId);
         commandHistory.addHistoryTaskId(Integer.toString(taskId));
 
         Set<Tag> sampleTargetSet = new HashSet<Tag>(
@@ -118,7 +126,7 @@ public class AddTagCommandTest {
         expectedModel.setSelectedProject(model.getFilteredProjectList().get(0));
         expectedModel.addGroupTag(sampleGroupTag);
 
-        expectedModel.setTask(lastTask, taskToComplete);
+        expectedModel.setTask(lastTask, taskWithGroup);
         expectedModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         expectedModel.commitProject();
 

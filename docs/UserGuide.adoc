@@ -30,7 +30,7 @@ So just head over to our <<Quick Start>> section and begin your NoteNote experie
 
 == How to use this guide
 
-There are several terms which we use throughout our guide. To make your life easier, please do read the following section to ensure that you are able to use our User Guide to the fullest extent!
+There are several terms which we use throughout our guide. To make your life easier, please do read the following sections to ensure that you are able to use our User Guide to the fullest extent!
 
 === Commands Format
 
@@ -40,21 +40,24 @@ Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/Sample Task 1 t/SAMPLE` or as `n/Sample Task 1`.
 * Items with `…` after them can be used multiple times including zero times e.g. `[t/TAG]…` can be used as (i.e. 0 times), `t/CS2101`, `t/SEM1` `t/SCHOOL` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME` `ds/DESCRIPTION`, `ds/DESCRIPTION` `n/NAME` is also acceptable.
-* The `add`, `edit` and `delete` commands each have a shorthand equivalent alias, and their usage can be viewed below at their respective sections in the User Guide.
+* All commands each have a shorthand equivalent alias, and their usage can be viewed below at their respective sections in the User Guide.
 
+=== Icons Meaning
+
+Various icons are also used throughout this user guide with the following context:
+
+[TIP]
+This is a tip. Follow these suggested tips to make your life much simpler when using *NoteNote*!
+
+[NOTE]
+This is a note. These are things for you to take note of when using *NoteNote*.
 
 == Application Overview
-
-=== Application Layout
-
-image::apporg.png[width="790"]
-
-The application has two layers, the project layer and the task layer, as shown in Figure 1 above. There are some commands which work differently based on the layer they are in. This is covered in detail in Sections 6 and 7. The project layer contains all the projects the user has added while the task layer contains the tasks and subtasks assigned to a particular project.
 
 // tag::UIlayout[]
 === User Interface Layout
 
-image::applayout.png[width="790"]
+image::applayout.png[width="790", title="Application interface"]
 
 * *Panel A: Command Box* - Where your commands will be typed
 * *Panel B: Results Box* - Displays result for the following commands: history, taskhistory, compare,  listtag; else displays either success / error message for all other commands.
@@ -69,6 +72,16 @@ Panel A will always be active, allowing you to input your commands at any time.
 Upon first opening of the application, your active panel will start from *C*, and only upon choosing a project will your active panel change to *D*.
 // end::UIlayout[]
 
+=== Application Layout
+
+image::Ui.png[width="790", title="Application layout"]
+
+The application has two levels, the project level and the task level, as shown. There are some commands that only works on certain levels. This is covered in detail in Sections 6 and 7. The project level contains all the projects the user has added while the task level contains the tasks of a particular project.
+
+When you are in the project level, the Project Box (Panel C) will be active and unshaded while the Task Box (Panel D) will be inactive and shaded. Similarly, when you are in the task level, the Project Box (Panel C) will be inactive and shaded and the Task Box (Panel D) will be active and unshaded.
+
+Refer to diagrams below on what you should expect to see when you are in the respective levels.
+
 
 == Quick Start
 
@@ -77,7 +90,7 @@ Upon first opening of the application, your active panel will start from *C*, an
 .  Download the latest `notenote.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
-.  Type the command in the command box or *Panel A* (refer to Figure 2) and press Enter to execute it.
+.  Type the command in the command box or *Panel A* (refer to Figure 1) and press Enter to execute it.
 .  Some example commands you can try:
 * *`listproject`* : lists all projects
 * **`select 1`** : selects the project at index 1
@@ -154,16 +167,19 @@ Outcome: Task Box (Panel D) will display all tasks within selected project. Acti
 Define a group tag when you want to add multiple identical tags to multiple tasks easily. They can be carried out at both project and task level.
 However, group tag created exists for the entire NoteNote instance and will be lost once the user exits.
 
-After defining a group tag, use the addtag command to add a group tag to a task of your choice.
+After defining a group tag, use the `addtag` command to add a group tag to a task of your choice. Note that duplicated group tags cannot be created.
 
 * Format: `definetag gt/GROUPTAG t/TAG [t/MORETAGS]`
 * Alias: `dt`, i.e. `definetag` is equivalent to `dt`
 
 Example:
 
-* `definetag gt/Consultation t/Prepare demo t/Prepare questions`
+* `definetag gt/Consultation t/PrepareDemo t/PrepareQuestions`
 
-Outcome: A group tag called Consultation will be created which would contain tags Prepare demo and Prepare questions.
+Outcome: A group tag called Consultation will be created which would contain tags PrepareDemo and PrepareQuestions.
+
+.After excuting `definetag`
+image::AfterDefineTag.png[width="800"]
 
 [NOTE]
 ====
@@ -171,14 +187,17 @@ Group tags are only considered as duplicates in the following situations where b
 
 ** `definetag gt/sample t/TAG0`
 ** `definetag gt/sample t/TAG0`
+
+In situations where users input `definetag gt/sample1 gt/sample2 t/TAG`, only the last group tag parameter (i.e. `gt/sample2`) will be accepted.
+
 ====
 // end::definetag[]
 
 // tag::import[]
 ==== Import a project list: `import`
-Use this function when importing a project list shared by a friend to import additional projects and tasks on top of your current project list.
+Import projects and tasks to your NoteNote instance from project list shared by a friend. New projects and tasks will be added on top of current project list.
 
-Source file must be a JSON file and follow  specific format. See <<samplejson>>.
+Source file must be a JSON file and follow a specific format. See <<samplejson>>.
 
 This feature is recommended to be used together with `export` so that users need not manually generate a JSON file to `import`.
 
@@ -207,18 +226,21 @@ image::AfterImportCommand.png[width="600"]
 
 // tag::export[]
 ==== Export projects to JSON file: `export`
-You could export projects from your NoteNote instance to easily share project tasks with your friends. Projects are exported in JSON format and could be imported by another NoteNote instance using `import`.
+Export projects from your NoteNote instance to easily share projects and tasks with your friends. Projects are exported in JSON format and could be imported by another NoteNote instance using `import`.
 
-* Format: `export i/INDEX o/OUTPUTPATH`
+* Format: `export [i/INDEX] o/OUTPUTPATH`
 * Alias: `ex`, i.e. `export` is equivalent to `ex`
 
 Examples:
 
-* To export multiple projects: `export i/1,2,3 o/C:\Users\Test\Desktop\export.json`
-* To export currently selected project: `export o/C:\Users\Test\Desktop\export.json`
+* To export currently selected project:
+. `select 1`
+. `export o/C:\Users\Test\Desktop\export.json`
+* To export multiple projects:
+. `export i/1,2,3 o/C:\Users\Test\Desktop\export.json`
 
 [TIP]
-Output path should be explicitly specified unless the output is to be within the application folder. If output is to be contained in application folder, the `export i/1,2,3 o/.\test.json` is sufficient.
+Output path should be explicitly specified unless the output is to be within the application folder. If output is to be contained in application folder, the relative path `export i/1,2,3 o/.\test.json` is sufficient.
 
 Outcome: JSON file will be created at output path specified.
 
@@ -226,13 +248,19 @@ Outcome: JSON file will be created at output path specified.
 image::AfterExportCommand.png[width="600"]
 // end::export[]
 
+// tag::analyse[]
 ==== Analyse progress of all projects: `analyse`
-View number of completed and uncompleted tasks of each project.
+View number of completed tasks for each project, and percentage of each project completed.
 
 * Format: `analyse`
 * Alias: `an`, i.e. `analyse` is equivalent to `an`
 
-Outcome: Task Box (Panel D) will display all tasks within selected project. Active panel is now Panel D and all commands that is executed after this would be in the context of tasks.
+Outcome:
+
+image::AnalyseOutcome.PNG[width="600", title="Example Outcome for `analyse` command"]
+
+Results Box (Panel B) will display number of completed tasks for each project, and percentage of each project completed, as shown in the above figure.
+// end::analyse[]
 
 ==== List previously entered commands: `history`
 
@@ -286,6 +314,9 @@ Example:
 * `addtag 1 gt/Consultation`
 
 Outcome: Task Box (Panel D) will show the updated task with newly added tags.
+
+.After executing `addtag`
+image::AfterAddTag.png[width="600"]
 
 [TIP]
 Tags defined under the group tag will be visible under the task instead of the group tag itself.
@@ -366,6 +397,10 @@ List all unique tags and associated tasks within a project
 * Alias: `lt`, i.e. `listtag` is equivalent to `lt`
 
 Outcome: Result Box (Panel B) will will display all unique tags and associated tasks within a project.
+
+.After executing `listtag`
+image::AfterListTag.png[width="800"]
+
 // end::listtag[]
 
 ==== Deleting a task: `delete`
@@ -387,6 +422,7 @@ Examples:
 
 Outcome: Task Box (Panel D) will no longer display the first task in the results of the `find` command.
 
+// tag::completed[]
 ==== Completing a task: `completed`
 
 Marks the specified task identified by the index number used in the displayed task list as completed by adding a `completed` tag to it.
@@ -400,9 +436,14 @@ Completed tasks will be used as statistics for the `analyse` feature, unlike del
 
 Examples:
 
-* `completed 1`
+* `completed 3`
 
-Outcome: Task Box (Panel D) will show a `completed` tag for the first task.
+Outcome:
+
+image::CompletedOutcome.PNG[width="300", title="Example Outcome for `completed` command"]
+
+Task Box (Panel D) will display a `completed` tag for the third task, as shown in the above figure.
+// end::completed[]
 
 ==== Selecting a task: `select`
 
@@ -496,10 +537,12 @@ chronological order.
 * Format: `taskhistory INDEX`
 * Alias: `th` i.e. `taskhistory` is equivalent to `th`
 
-****
-* Take note that if you `listproject`, the history of commands will be cleared,
-thus `taskhistory` will no longer work as intended when you return to view the project tasks.
-****
+[NOTE]
+ Take note that if you `listproject`, the history of commands will be cleared,
+thus `taskhistory` will no longer work as intended when you return to view the project tasks. +
+[TIP]
+ Only `edit`/`completed`/`addtag`/`delete` commands will be recorded
+
 
 Example :
 
@@ -510,7 +553,7 @@ Outcome:
 image::taskhistorysample.png[width="900", title="Example Outcome for `taskhistory` command"]
 
 Results Box (Panel B) will display all previous commands which directly
-affects the task at index 1 (Figure 3).
+affects the task at index 1 (Figure 11).
 // end::taskhistory[]
 
 // tag::compare[]
@@ -522,12 +565,13 @@ in the task.
 * Format: `compare INDEX`
 * Alias: `c` i.e. `compare` is equivalent to `c`
 
-****
-* `compare` only compares Name, Description, Deadline of a Task.
-* Take note that tags will not be compared.
-* Take note that if you `listproject`, the history of commands will be cleared,
+[TIP]
+`compare` only compares Name, Description, Deadline of a Task.
+ Note that tags will not be compared.
+
+[NOTE]
+If you `listproject`, the history of commands will be cleared,
  thus `compare` will no longer work as intended when you return to view the project tasks.
-****
 
 Example :
 
@@ -547,9 +591,54 @@ Outcome:
 image::comparesample.png[width="900", title="Example Outcome for `compare` command"]
 
 Task Box (Panel B) will display information of current version of the task at
-         index 1 ( _sample task_ ) and the previous version of it ( _sample task edited_ ) (Figure 4).
+         index 1 ( _sample task_ ) and the previous version of it ( _sample task edited_ ) (Figure 12).
          Allows you to view a direct comparison of what was changed.
 // end::compare[]
+
+== Future Enhancements [coming in v2.0]
+
+==== Analyse progress of all projects: `analyse`
+
+Current `analyse` feature will show number of completed tasks for each project, and percentage of each project completed.
+
+Future enhancement of `analyse` will be more comprehensive, displaying *visual graphs, charts & tables*
+
+==== Undo per task `undotask`
+
+Current `undo` feature is a general execution on the overall commands that is executed.
+
+`undotask` will allow you to "undo" a command that is executed on the selected task.
+
+* Format: `undotask INDEX`
+
+Example :
+
+*  `edit 1 n/edited_name` ...
+
+Outcome: Task Box (Panel D) will update the name for the task at index 1 to reflect the new edited name.
+
+*  `undotask 1`
+
+Outcome: Task Box (Panel D) will update the name for the task at index 1 to reflect the previous name before the edit.
+
+==== Redo per task `redotask`
+
+Current `redo` feature is a general execution on the overall undo command that is executed.
+
+`redotask` will allow you to "redo" from a `undotask` that is executed on the selected task.
+
+* Format: `redotask INDEX`
+
+Example :
+
+*  `undotask 1`
+
+Outcome: Task Box (Panel D) will update the name for the task at index 1 to reflect the previous name before the edit.
+
+*  `redotask 1`
+
+Outcome: Task Box (Panel D) will update the name for the task at index 1 to reflect the name before `undotask` was executed.
+
 
 == FAQ
 
@@ -566,7 +655,7 @@ Task Box (Panel B) will display information of current version of the task at
 |*Command*|*Description*
 |`add`|Add a new project or task
 |`addtag`|Add a group tag to a task
-|`analyse`|View task completion rate
+|`analyse`|View completion statistics for all projects
 |`clear`|Clear all tasks in project
 |`compare`|Compare current task with previous version
 |`completed`|Marks task as completed

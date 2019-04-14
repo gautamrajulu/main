@@ -242,7 +242,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public String getFilteredTagList() {
+        public String getTagWithTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 

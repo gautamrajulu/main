@@ -24,7 +24,7 @@ public class ListTagCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_GO_TO_TASK_LEVEL, COMMAND_WORD));
         }
 
-        String filteredTags = model.getFilteredTagList();
+        String filteredTags = model.getTagWithTaskList();
         return new CommandResult(filteredTags);
     }
 

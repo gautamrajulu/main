@@ -9,31 +9,33 @@
 
 == Overview
 
-*NoteNote* is an effective tool for organizing multiple projects and tasks through the Command Line Interface (CLI).
+*NoteNote* is a project management tool created for Computing students to organize multiple projects and tasks effectively through the Command Line Interface (CLI).
 
-Other than keeping track of your projects and tasks, NoteNote allows you to analyze your productivity, categorize your tasks, share tasks with you friends and many more.
+Other than keeping track of your projects and tasks, NoteNote also allows you to analyze your productivity, categorize your tasks, share tasks with you friends and many more.
 
 .Application Layout
-image::applayoutclean.png[width="800"]
+image::DemoLayout.png[width="800"]
 
 == Summary of contributions
-My contributions to NoteNote includes the introduction of an import and export feature and
-the refactoring required to morph the original AddressBook application to NoteNote.
+My contributions to NoteNote consists of the implementation of the `import` and `export` feature and
+the refactoring required to morph the original AddressBook 4 application to NoteNote.
 
-* *Enhancement 1*: added *the ability to import and export projects*
-** What it does: Import new projects from a JSON file and export selected projects to a JSON file
-** Justification: This feature allows you to share projects with another user without having to add projects and tasks manually.
-** Highlights: The implementation was challenging as it requires us to familiarize ourselves with the existing implementation of the Storage component and tweak it to support NoteNote's storage requirement.
+* *Enhancement 1: added the ability to import and export projects*
+** What it does:
+*** `import`: Imports new projects from a JSON file
+*** `export`: Exports selected projects to a JSON file
+** Justification: This feature allows you to easily share projects with another user without having to manually enter projects and tasks using the CLI.
+** Highlights: The implementation was challenging as it requires us to familiarize ourselves with the existing implementation of the Storage component and tweak it to support NoteNote's storage requirement. +
 Furthermore, we also had to understand the utilities (e.g. `FileUtil`, `JsonUtil`) that the Storage component relies on so as to take advantage of these utilities to implement `import` and `export`.
 
-* *Enhancement 2*: *modified UI, Logic, Model and Storage components for NoteNote*
+* *Enhancement 2: modified UI, Logic, Model and Storage components for NoteNote*
 ** What it does:
-*** UI would now display an additional panel to show list of projects
-*** Logic is tweaked to load project list upon start up and associate projects with their tasks to allow navigation between projects and tasks.
-*** Introduce new classes in Model to support implementation of Project List, Project and Task.
-*** Storage is modified to keep track of multiple tasks within a project and multiple projects within a project list
-** Justification: The current implementation of AddressBook is unable to support all the functions of NoteNote and requires us to heavily morph the existing AddressBook application to NoteNote.
-** Highlights: The implementation was challenging as it requires us to understand the implementation of all components and modify them simultaneously.
+*** *UI* would now display an additional panel to show list of projects
+*** *Logic* is tweaked to load project list upon start up and associate projects with their tasks to allow navigation between projects and tasks.
+*** Introduce new classes in *Model* to support implementation of Project List, Project and Task.
+*** *Storage* is modified to keep track of multiple tasks within a project and multiple projects within a project list
+** Justification: The current implementation of AddressBook is unable to support all the functions of NoteNote and requires us to heavily morph the existing AddressBook application.
+** Highlights: The implementation was challenging as it requires us to understand the implementation of all the above-mentioned components and modify them simultaneously in order to verify that modification is done correctly.
 
 * *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=josephinetanadi[Functional code]]
 
@@ -49,7 +51,7 @@ Furthermore, we also had to understand the utilities (e.g. `FileUtil`, `JsonUtil
 == Contributions to the User Guide
 
 |===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|_Given below are the sections that I have contributed to the User Guide to showcase my ability to write documentation targeting end-users._
 |===
 
 include::../UserGuide.adoc[tag=import]
@@ -59,8 +61,7 @@ include::../UserGuide.adoc[tag=export]
 == Contributions to the Developer Guide
 
 |===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|_Given below are the sections that I have contributed to the Developer Guide to showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
 include::../DeveloperGuide.adoc[tag=importexport]
-

@@ -9,21 +9,37 @@
 
 == Overview
 
-NoteNote is a desktop project application used for managing multiple projects and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+NoteNote is a desktop project application used for managing multiple projects and tasks (refer to Figure 1). +
+It is convenient and easy to use as the user just needs to type one-liner commands (using a Command Line Interface). +
+Besides adding projects and tasks, users can also organise them with different tags of their choice, and track their progress along the way as well. +
+This application was developed by my other four team members and I for CS2113T, an NUS module.
+
+image::DemoLayout.png[width="790", title="NoteNote's interface"]
+
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to mark tasks as completed*
-** What it does: allows the user to mark specific tasks as completed by displaying a `completed` tag for each of those tasks. This can be reversed by using the undo command.
-** Justification: This feature improves the product significantly because a user can conveniently check off tasks that are completed, which ties in with the task-management purpose of this project.
+|===
+|_This section contains the breakdown of my contributions to this application._
+|===
+
+* *Major enhancement*: Added *the ability to mark tasks as completed*
+** What it does: It allows the user to mark specific tasks as completed by displaying a `completed` tag for each of those tasks (refer to Figure 2).
+** Justification: This feature improves the product significantly because a user can conveniently check off tasks that are completed, which ties in with the main purpose of this application, i.e. task management.
 ** Highlights: This enhancement required a different implementation from `edit` as it was more specialised and only affected the tags of a task. Any tasks marked as completed would also have to be retained in Storage, to complement the `analyse` feature.
 
-* *Major enhancement*: added *the ability to analyse all completed tasks*
-** What it does: allows the user to see which tasks in a specific project have been completed already, so as to track the user's progress on that project.
-** Justification: This feature improves the product significantly because a user can conveniently check off tasks that are completed, which ties in with the task-management purpose of this project.
+image::CompletedOutcome.PNG[width="300", title="`completed` tag (in pink) is displayed for a completed task"]
+
+* *Major enhancement*: Added *the ability to analyse all completed tasks*
+** What it does: It allows the user to see at one glance how many tasks in each project have been completed, as well as the percentage completed for each project (refer to Figure 3).
+** Justification: This feature allows the user to effortlessly track their progress across multiple projects by displaying clear and easily understood statistics.
 ** Highlights: This enhancement required additional implementations as the current `find` command could only search through names of tasks, but `analyse` needed to search through tags instead and present the results as a countable statistic.
 
-* *Minor enhancement*: added command aliases that allow the user to cut down the amount of typing to execute any command.
+image::AnalyseOutcome.PNG[width="600", title="Statistics produced as a result of `analyse`"]
+
+* *Minor enhancement*: Added *command aliases* that allow the user to *cut down the amount of typing* to execute any command (refer to Figure 4).
+
+image::CmdAlias.png[width="300", title="`completed` command (left) versus its shorthand alias (right)"]
 
 * *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=rachellim10[Functional code]]
 
@@ -32,19 +48,21 @@ NoteNote is a desktop project application used for managing multiple projects an
 ** Enhancements to existing features:
 *** Added shorthand command aliases for existing commands
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide
-*** Did cosmetic tweaks to existing contents of the Developer Guide
+*** Updated the User Guide and Developer Guide to include my new features
+*** Did cosmetic tweaks to existing contents of the User Guide and Developer Guide
+** Community:
+*** Review pull requests weekly (see https://github.com/CS2113-AY1819S2-T09-3/main/pulls?q=is%3Apr+reviewed-by%3Arachellim10[here])
+*** Reported bugs and gave suggestions for other group’s project (Issues https://github.com/cs2113-ay1819s2-t08-2/main/issues/59[#59], https://github.com/cs2113-ay1819s2-t08-2/main/issues/64[#64], https://github.com/cs2113-ay1819s2-t08-2/main/issues/69[#69], https://github.com/cs2113-ay1819s2-t08-2/main/issues/72[#72], https://github.com/cs2113-ay1819s2-t08-2/main/issues/73[#73], https://github.com/cs2113-ay1819s2-t08-2/main/issues/78[#78])
 
 == Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=analyse]
-
 include::../UserGuide.adoc[tag=completed]
+
+include::../UserGuide.adoc[tag=analyse]
 
 == Contributions to the Developer Guide
 
@@ -52,3 +70,4 @@ include::../UserGuide.adoc[tag=completed]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
+include::../DeveloperGuide.adoc[tag=completedanalyse]

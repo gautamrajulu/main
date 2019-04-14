@@ -5,37 +5,50 @@
 
 == PROJECT: NoteNote
 
----
+**NoteNote** is the go-to task management tool built for computing students to keep track of all their tasks right at their fingertips. With a minimalistic command line interface that users would be more than familiar with as computing students, NoteNote is an efficient too that allows users to analyze their productivity, categorize their tasks and many more!
+
+This application was developed by a https://cs2113-ay1819s2-t09-3.github.io/main/AboutUs.html[team of five] as part of CS2113T, a software engineering module at National University of Singapore.
 
 == Overview
 
-NoteNote is a desktop project application used for managing multiple projects and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Throughout this portfolio, various icons and terminologies used to describe the application are used. Here's what they mean:
+
+[TIP]
+This is a tip. Follow these suggested tips to make your life much simpler when using *NoteNote*!
+
+[NOTE]
+This is a note. These are things for you to take note of when using *NoteNote*.
+
+.Application Layout
+image::DemoLayout.png[width="600"]
 
 == Summary of contributions
+The introduction of group tags, a feature split into two separate commands, are my main contributions to NoteNote. I also worked on enhancing the `listtag` feature and refactoring the original AddressBook into NoteNote.
 
 * *Major enhancement*: added *the ability to create group tags and apply them to tasks*
 ** What it does: allows users to create a group tag and add multiple child tags into it
 ** Justification: multiple tags can be repetitive to type out again and again especially if they are used often. This enhancement aims to reduce typing errors and allows a convenient way for users to easily create a group tag and apply them to different tasks.
-** Highlights: This enhancement is split between `DefineTag` which creates a group tag and `AddTag` that applys existing group tag to a task. They should be used in conjunction.
+** Highlights: This enhancement is split between `DefineTagCommand` which creates a group tag and `AddTagCommand` that applys existing group tag to a task. They should be used in conjunction.
 
 * *Minor enhancement*: added a `listtag` command that allows the user to list down all tags and its associated task.
 
-* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=andreathniah[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=andreathniah[Test code]] _{give links to collated code files}_
+* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=andreathniah[Functional code]]
 
 * *Other contributions*:
 
 ** Project management:
-*** Handled all Github related issues that arised within the team (merge conflicts, rebasing etc)
+*** Handled all GitHub related issues that arise within the team (merge conflicts, rebasing etc)
 *** Managed releases `v1.0` - `v1.4` (4 releases) on GitHub
 ** Enhancements to existing features:
-*** Morphing AB4 to NoteNote
-*** Updated the GUI tag color scheme (Pull requests https://github.com/CS2113-AY1819S2-T09-3/main/pull/19[#19])
+*** Morphing AB4 to NoteNote: [https://github.com/CS2113-AY1819S2-T09-3/main/pull/31[#31]], [https://github.com/CS2113-AY1819S2-T09-3/main/pull/33[#33]]
+*** Updated the GUI tag color scheme: [https://github.com/CS2113-AY1819S2-T09-3/main/pull/19[#19]]
+** Enhancement to new features
+*** Wrote tests for `listtag`, `definetag` and `addtag` feature: [https://github.com/CS2113-AY1819S2-T09-3/main/pull/189[#189]]
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide
+*** Did cosmetic tweaks to existing contents of the User Guide and Developer Guide: [https://github.com/CS2113-AY1819S2-T09-3/main/pull/80[#80]], [https://github.com/CS2113-AY1819S2-T09-3/main/pull/87[#87]]
 
 
 == Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._

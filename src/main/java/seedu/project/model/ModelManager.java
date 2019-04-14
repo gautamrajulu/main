@@ -248,17 +248,9 @@ public class ModelManager implements Model {
     /**
      * Returns string of tags and their associated task name {@code String}
      */
-    public String getFilteredTagList() {
-        // get set of unique tags
-        List<Tag> allTags = new ArrayList<>();
-        filteredTasks.forEach(entry -> {
-            entry.getTags().forEach(tag -> allTags.add(tag));
-        });
-        Set<Tag> uniqueTagSet = new HashSet<>(allTags);
+    public String getTagWithTaskList() {
+        List<Tag> uniqueTagList = getUniqueTagList();
 
-        // convert uniqueTag set to list
-        List<Tag> uniqueTagList = new ArrayList<>();
-        uniqueTagList.addAll(uniqueTagSet);
         // arrange print string
         String stringToPrint = "";
         for (Tag tag : uniqueTagList) {
@@ -271,6 +263,24 @@ public class ModelManager implements Model {
             stringToPrint += "\n";
         }
         return stringToPrint;
+    }
+
+    /**
+     * Returns list of tags {@code List<Tag>}
+     */
+    public List<Tag> getUniqueTagList() {
+        // get set of unique tags
+        List<Tag> allTags = new ArrayList<>();
+        filteredTasks.forEach(entry -> {
+            entry.getTags().forEach(tag -> allTags.add(tag));
+        });
+        Set<Tag> uniqueTagSet = new HashSet<>(allTags);
+
+        // convert uniqueTag set to list
+        List<Tag> uniqueTagList = new ArrayList<>();
+        uniqueTagList.addAll(uniqueTagSet);
+
+        return uniqueTagList;
     }
 
     @Override

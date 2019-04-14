@@ -13,20 +13,23 @@ NoteNote is a desktop project application allowing you to manage multiple projec
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to view command history for each individual task*
-** What it does: allows you to view a command history of a chosen task with the command `taskhistory`. The command history will include commands that have a direct impact on the task (e.g. `edit` / `completed` / `addtag` / `delete`)
+My main contributions to NoteNote is the implementation of 2 of my features, `taskhistory` and `compare`.
+I have also contributed to the team by helping manage version releases and ensuring deliverables are met.
 
-** Justification: Current implementation will only allow you to view the command history of every command (valid & invalid) that has been entered.
+* *Major enhancement*: added *the ability to view command history for each individual task*
+** *What it does*: allows you to view a command history of a chosen task with the command `taskhistory`. The command history will include commands that have a direct impact on the task (e.g. `edit` / `completed` / `addtag` / `delete`)
+
+** *Justification*: Current implementation will only allow you to view the command history of every command (valid & invalid) that has been entered.
 But when handling multiple large projects, a user is bound to have numerous edits for the many task that is there.
 In this case the likelihood of a user forgetting / executing a wrong command is very probable. Thus, this feature allows a user
 to view a record of the changes he made for a specific task instead of viewing it as a whole project. Allowing easy referencing for a user.
-** Highlights: This feature is implemented by creating another stack parallel to the existing command history stack. This new stack will contain the unique ID of a task corresponding
+** *Highlights*: This feature is implemented by creating another stack parallel to the existing command history stack. This new stack will contain the unique ID of a task corresponding
 to the command of the same index in the command history.
 
 * *Minor enhancement*: added *the ability to compare a task to its previous version*
-** What it does: allows you to view a direct comparison of a chosen task against its previous version before the edit with the command `compare`
-** Justification: To allow easy referencing for a chosen task in a neater method as this feature compares the differences and will only show you the result of the field (Name / Description / Deadline) that was changed, instead of all the fields.
-** Highlights: Current `undo` feature is implemented as general undo for all commands.
+** *What it does*: allows you to view a direct comparison of a chosen task against its previous version before the edit with the command `compare`
+** *Justification*: To allow easy referencing for a chosen task in a neater method as this feature compares the differences and will only show you the result of the field (Name / Description / Deadline) that was changed, instead of all the fields.
+** *Highlights*: Current `undo` feature is implemented as general undo for all commands.
 This `compare` feature serves as a base for a future feature which allows `undo` for a specific task.
  ***   You will be able to `undo` to the version that is shown when `compare` executes.
 
@@ -43,7 +46,7 @@ This `compare` feature serves as a base for a future feature which allows `undo`
 *** Ensure code coverage is met during product release.
 *** Display total projects within UI Status Bar Footer (Pull requests https://github.com/CS2113-AY1819S2-T09-3/main/pull/17[#17])
 ** Documentation:
-*** Updated DeveloperGuide & UserGuide to include feature implementations.
+*** Update DeveloperGuide & UserGuide to include feature implementations.
 *** Update diagrams for DeveloperGuide to reflect existing architecture used.
 *** Added user stories & use cases for DeveloperGuide
 *** Managed formatting for UserGuide to ensure proper structuring and consistency.
@@ -55,16 +58,18 @@ https://github.com/CS2113-AY1819S2-T09-3/main/pull/128[#128],
 https://github.com/CS2113-AY1819S2-T09-3/main/pull/131[#131],
 https://github.com/CS2113-AY1819S2-T09-3/main/pull/141[#141])
 
-== Contributions to the User Guide
-Given below is a snippet of the User Guide documentation for my above listed enhancements.
-_You will be able to a look at my documenting abilities, to produce *concise guides* & being *audience focused*._
+== Documentations
 
 === Glossary
 [TIP]
 Represents an additional information that is good to know
 [NOTE]
-Represents an additional information where if not taken into considerdation, will affect command operations
+Represents an additional information where if not taken into consideration, will affect command operations
 
+
+=== Contributions to the User Guide
+Given below is a snippet of the User Guide documentation for my above listed enhancements.
+_You will be able to a look at my documenting abilities, to produce *concise guides* & being *audience focused*._
 
 include::../UserGuide.adoc[tag=UIlayout]
 
@@ -72,7 +77,7 @@ include::../UserGuide.adoc[tag=compare]
 
 include::../UserGuide.adoc[tag=taskhistory]
 
-== Contributions to the Developer Guide
+=== Contributions to the Developer Guide
 
 Given below is a snippet of the Developer Guide Documentation for my above listed enhancements.
 _You will be able to a look at my technical documentation abilities, utilizing *UML Sequence Diagrams* & *custom-purported

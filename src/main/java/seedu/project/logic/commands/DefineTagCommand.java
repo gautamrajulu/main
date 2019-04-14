@@ -17,9 +17,9 @@ public class DefineTagCommand extends Command {
     public static final String COMMAND_WORD = "definetag";
     public static final String SUCCESS_MESSAGE = "Group tag created: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allows users to define tag parent and its child tags\n"
-            + "Parameters: " + PREFIX_GROUPTAG + "GROUPTAG " + PREFIX_TAG + "TAG [t/MORETAGS]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_GROUPTAG + "Consultation "
-            + PREFIX_TAG + "Prepare demo " + PREFIX_TAG + "Prepare questions";
+            + "Parameters: " + PREFIX_GROUPTAG + "GROUPTAG " + PREFIX_TAG + "TAG [t/MORETAGS]\n" + "Example: "
+            + COMMAND_WORD + " " + PREFIX_GROUPTAG + "Consultation " + PREFIX_TAG + "PrepareDemo " + PREFIX_TAG
+            + "PrepareQuestions";
     public static final String MESSAGE_DUPLICATE_GROUPTAG = "Group tag %1$s already exists in the group tag list";
 
     private final GroupTag toAdd;
@@ -33,7 +33,7 @@ public class DefineTagCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         if (model.hasGroupTag(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_GROUPTAG);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_GROUPTAG, toAdd.getName().toString()));
         }
 
         model.addGroupTag(toAdd);

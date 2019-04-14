@@ -159,7 +159,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
-    String getFilteredTagList();
+    /** Returns an String tags and their associated task list */
+    String getTagWithTaskList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given

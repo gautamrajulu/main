@@ -41,7 +41,8 @@ public class DefineTagCommandTest {
         LogicManager.setState(true);
 
         DefineTagCommand defineTagCommand = new DefineTagCommand(sampleGroupTag);
-        String expectedMessage = defineTagCommand.MESSAGE_DUPLICATE_GROUPTAG;
+        String expectedMessage = String.format(
+                defineTagCommand.MESSAGE_DUPLICATE_GROUPTAG, sampleGroupTag.getName().toString());
         assertCommandFailure(defineTagCommand, model, commandHistory, expectedMessage);
     }
 

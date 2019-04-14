@@ -17,11 +17,34 @@ endif::[]
 
 By: `T09-3`      Since: `22 Feb 2019`      Licence: `MIT`
 
+== Introduction
+Welcome to NoteNote (NN)!
+
+If you're looking for an application to organize your projects you've come to the right place! But that's not all NoteNote can do! NoteNote can also keep track of individual tasks, analyze your productivity and share your To-Do list with your friends!
+
+We designed the application ground up for computing students, so you can say that NoteNote is designed for computing students, by computing students, so you can be sure that it will fulfil all your project management needs!
+
+Built for computing students, NoteNote uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the benefits of the GUI. So if you can type fast and are used to command line, NoteNote is sure to help manage your task faster than other traditional GUI based task managers.
+
+== How to use this guide
+
+There are several terms which we use throughout our guide. To make your life easier, please do read the following section to ensure that you are able to use our Developer Guide to the fullest extent!
+
+=== Icons Meaning
+
+Various icons are also used throughout this user guide with the following context:
+
+[TIP]
+This is a tip. Follow these suggested tips to make your life much simpler when using *NoteNote*!
+
+[NOTE]
+This is a note. These are things for you to take note of when using *NoteNote*.
+
 == Setting up
 
 === Prerequisites
 
-. *JDK `9`* or later
+. *JDK `9`*
 +
 [WARNING]
 JDK `10` on Windows will fail to run tests in <<UsingGradle#Running-Tests, headless mode>> due to a https://github.com/javafxports/openjdk-jfx/issues/66[JavaFX bug].
@@ -388,11 +411,15 @@ Building on top of the Undo/Redo feature, it is facilitated by `VersionedProject
 
 * `VersionedProject#compareTask()` -- Compares the chosen task with its previous version if it exist.
 
+image::compareseq.png[width="650", title="Sequence Diagram for `compare` Command"]
+
+Given above (Figure 10) is the sequence diagram when `compare` is called.
+
 These operations are exposed in the `Model` interface as `Model#compareTask()`.
 
-image::compare1.png[width="900", title="Example of VersionedProject when `edit` on Task B"]
+image::compare1.png[width="650", title="Example of VersionedProject when `edit` on Task B"]
 
-Given above (Figure 8.) is an example usage scenario and how the Compare Task mechanism behaves.
+Given above (Figure 11.) is an example usage scenario and how the Compare Task mechanism behaves.
 
 
 Step 1. The user selects the task to compare by entering the index of the task that is shown. `CompareCommandParser#CompareCommand()` will then get the index of the task
@@ -402,21 +429,21 @@ Step 2. The index will then be used by `CompareCommand#CommandResult()` to retri
 
 Step 3. `VersionedProject#compareTask()` will retrieve the unique `taskId` of the chosen task.
 
-image::compare2.png[width="900", title="Process of how `compare` command will flow"]
+image::compare2.png[width="650", title="Process of how `compare` command will flow"]
 
 Step 4. `VersionedProject#compareTask()` will iterate through all the the tasks within each project state. The `taskId`
-will be used to determine if the task encountered during the iteration is the same as the chosen task (Figure 9, A).
+will be used to determine if the task encountered during the iteration is the same as the chosen task (Figure 12, A).
 
 [NOTE]
 If no same tasks are found after iterating through all the project states, or if there is no difference in all the task
 that is encountered, "Nothing to compare" will be showed to the user.
 
-Step 5. If the task encountered is the same as the chosen task, the 2 task will be compared against their name, description & deadline (Figure 9, B).
+Step 5. If the task encountered is the same as the chosen task, the 2 task will be compared against their name, description & deadline (Figure 12, B).
 
-image::compare 3.png[width="800", title="A successful `compare` where name is different"]
+image::compare 3.png[width="400", title="A successful `compare` where name is different"]
 
-Step 6. If there is a difference in any of the fields in the comparison (Figure 10), the difference will be showed to the user.
-Else Step 4. will continue to run to look for another version of the chosen task to compare (Figure 9, C).
+Step 6. If there is a difference in any of the fields in the comparison (Figure 13), the difference will be showed to the user.
+Else Step 4. will continue to run to look for another version of the chosen task to compare (Figure 12, C).
 
 ==== Design Considerations
 Two designs was considered for the implementation of `compare`. The pros and cons of the designs are listed in the table below
@@ -439,12 +466,6 @@ and our *chosen option is Alternative 1*
 |*Implemented*
 |
 |===
-
-==== Sequence Diagram (`compare`)
-
-image::compareseq.png[width="900", title="Sequence Diagram for `compare` Command"]
-
-Given above (Figure 11) is the sequence diagram when `compare` is called.
 // end::compare[]
 
 // tag::list[]
@@ -464,90 +485,174 @@ Step 2: Program retrieves an updated version of `Model#filteredTaskList()` via `
 
 // tag::listtag[]
 === List Tag feature
+The `listtag` feature allows users to list all unique tags and associated tasks within a project.
+It requires users to navigate to a project first with `select` command before executing the `listtag` command. Failure to do so would trigger an error message prompting users to do so.
+
 ==== Current Implementation
+Step 1. The user launches the application. `projectList` will be populated by invoking `StorageManager#readProjectList`.
 
-Step 1: User starts to list all tags and their relevant tasks by `listtag`. `ListTagCommand` retrieves result of `Model#filteredTaskList()` and iterate through all the tasks and obtain a list of unique tags within each project state.
+Step 2. The user selects a project. `setProject()` is invoked based on `Model#filteredProjectList`, and the tasks for that project are displayed via invoking `Model#filteredTaskList`.
 
-Step 2: Through this list of unique tags and another iteration through all tasks, task names with the same tags are concatenated to a string and displayed to `CommandResult`
+Step 3: User displays all tags and their associated tasks in the project by entering `listtag` and the following operations are carried out:
+
+* `ListTagCommand` calls `Model#getTagWithTaskList()` who in turns calls `Model#getUniqueTagList()`
+* `Model#getUniqueTagList()` makes use of the list of tasks obtained from `filteredTask` to iterate through all tasks and returns a list of unique tags within each project state
+* `Model#getTagWithTaskList()` uses a nested loop to iterate through this list of unique tags and the list of tasks to concatenate all tasks with the same tags into a string
+* This string is returned to `ListTagCommand` and displayed to `CommandResult`
+
+The following sequence diagram shows how the List Tag operation works:
+
+image::ListTagSequenceDiagram.png[width="600", title="Sequence Diagram for `listtag` Command"]
 
 ==== Design Considerations
+Two designs was considered for the implementation of `listtag`. The pros and cons of the designs are listed in the table below
+and our *chosen option is Alternative 1*
+|===
+| |Alternative 1 | Alternative 2
+|Design
+|Seperate parsing and cleaning of `filteredTask` to obtain the string of tags with their associated task to be done at `Model`
+|Parsing and cleaning of `filteredTask` to obtain the string of tags with their associated task to be done directly at `ListTagCommand`
 
-* **Alternative 1 (current choice):** `getFilteredTaskList` to retrieve relevant information.
-** Pros: Easy to implement.
-** Cons: Data from `getFilteredTaskList` have to be parsed and clean all in one file.
-* **Alternative 2:** Cleaning of data to be done at their respective/relevant class files.
-** Pros: Will not clutter `ListTagCommand` file.
+|Pros
+|Functions are reusable since they are located `Model`
+|Easy to implement.
+
+|Cons
+|A large `Model` might result in a slow system performance.
+|`ListTagCommand` will be cluttered and many of its functions will not be reusable.
+|===
 // end::listtag[]
 
 // tag::definetag[]
 === Define Tag feature
+The `definetag` feature allows users to create a group tag and add multiple child tags into it. It should be used in conjunction with `addtag` feature.
+
 ==== Current Implementation
+`definetag` feature can be used on both `project` and `task` level. Duplicated group tags created from `definetag` command are not allowed.
 
-The `definetag` feature allows users to create a group tag and add multiple child tags into it. It should be used in conjuction with `addtag` feature.
+Step 1. The user launches the application. `projectList` will be populated by invoking `StorageManager#readProjectList`.
 
-Step 1: User creates new group tag and its associated children tag with `definetag`. `DefineTagCommandParser` create a new `GroupTag` object that contains the group tag’s name and its associated tags and return them to `DefineTagCommand`.
+Step 2: User creates a new group tag and its associated child tags with `definetag`.
 
-Step 2: `DefineTagCommand` checks if GroupTag is unique via `Model#hasGroupTag` and adds the object to the model with `Model#addGroupTag` and `Model#commitProjectList` if it is.
+Step 3: `DefineTagCommandParser` create a new `GroupTag` object from the user's input. The object contains the group tag’s name and its associated tags and are return to `DefineTagCommand`.
+
+Step 4: `DefineTagCommand` checks if the returned `GroupTag` is unique via `Model#hasGroupTag()` and adds the object to the model with `Model#addGroupTag()` and `Model#commitProjectList` if it is.
+
+The following sequence diagram shows how the Define Tag operation works:
+
+image::DefineTagSequenceDiagram.png[width="600", title="Sequence Diagram for `definetag` Command"]
 
 ==== Design Considerations
+Two designs was considered for the implementation of `definetag`. The pros and cons of the designs are listed in the table below and our *chosen option is Alternative 1*
+|===
+| |Alternative 1 | Alternative 2
+|Design
+|Redefine group tag and its associated child tags every instances of `NoteNote`.
+|Saves the group tags and its associated child tags created via `DefineTagCommand` into storage
 
-* **Alternative 1 (current choice):** Results of define tag is not stored.
-** Pros: Easy to implement.
-** Cons: Created group tag is lost once the NoteNote instance is restarted.
-* **Alternative 2:** Storing results of define tag.
-** Pros: Created group tag can be used between all instances of NoteNote.
-** Cons: Harder to implement.
+|Pros
+|Easy to implement
+|Better user experience since group tags established in previous instances of `NoteNote` can still be reused.
+
+|Cons
+|All group tags created in `DefineTagCommand` will be lost once the instance of `NoteNote` is closed.
+|Harder to implement, can be considered for future version in v2.0
+|===
 // end::definetag[]
 
 // tag::addtag[]
 === Add Tag feature
+The `addtag` feature allows users to apply existing group tag to multiple tasks. It should be used in conjunction with `definetag` feature. It requires users to do the following:
+
+* Navigate to a project first with `select` command before executing the `addtag` command
+* Add only an existing group tag defined previously at `definetag`
+
+Failure to do any of the above would trigger an error message prompting users to do so.
+
 ==== Current Implementation
+The `addTag` feature obtains the target task from `FilteredTaskList` based on the task index given by the user. It then adds the child tags associated to the group tag defined previously at `definetag` into the task.
 
-The `addtag` feature allows users to apply existing group tag to multiple tasks. It should be used in conjuction with `definetag` feature.
+Additionally, it implements the following operations:
 
-Step 1: User selects task index and its favoured group tag with `addtag`. `AddTagCommandParser` parses the arguements and return them `AddTagCommand#AddTagCommand()`
+* `VersionedProject#commit()` — Saves the current project state in its history
+* `VersionedProjectList#commit()` — Saves the current project list state in its history
 
-Step 2: `AddTagCommand` gets a updated task list with `Model#getFilteredTaskList()` and iterate to add tags in the `GroupTag` object to chosen task.
+These operations are exposed in the Model interface as `Model#commitProject()` and `Model#commitProjectList()` respectively.
+
+Step 1. The user launches the application. `projectList` will be populated by invoking `StorageManager#readProjectList`.
+
+Step 2. The user selects a project. `setProject()` is invoked based on `Model#filteredProjectList`, and the tasks for that project are displayed via invoking `Model#filteredTaskList`.
+
+Step 3: User applies the group tag and its associated child tags in the selected task by entering `addtag`. The following operations are carried out:
+
+* `AddTagCommandParser` parses the arguments and return them `AddTagCommand#AddTagCommand()`
+* `lastShownList` of all tasks in the current project is obtained from `Model` using `getFilteredTaskList()`
+* Two identical tasks, `targetTask` and `taskToAdd` are created based on `lastShownList` using the index from user's input.
+* `AddTagCommand` will then call `Model#getGroupTagList` which returns a list of all group tags. Names from the list of group tags will be iterated and checked if it matches the name given by user's input.
+* Tags in the group tag will be added `taskToAdd` if the checks passes.
+
+The following sequence diagram shows how the Add Tag operation works:
+
+image::AddTagSequenceDiagram.png[width="600", title="Sequence Diagram for `addtag` Command"]
 
 ==== Design Considerations
+Two designs was considered for the implementation of `definetag`. The pros and cons of the designs are listed in the table below
+and our *chosen option is Alternative 1*
+|===
+| |Alternative 1 | Alternative 2
+|Design
+|Tags in group tag are added to the task by a separate command and remain visible in Task List
+|Users can add a group tag into a task via the existing `add` and `edit` command with `gt/GROUPTAG` as a parameter
 
-* **Alternative 1 (current choice):** Results is stored.
-** Pros: Easy to implement.
+|Pros
+|Easy to implement
+|Better user experience by utilizing existing command that users are already familiar with.
+
+|Cons
+|Might be confusing to users since tags are usually added via `add` or `edit` commands
+|Harder to implement, can be considered for future version in v2.0
+|===
 // end::addtag[]
 
 // tag::taskhistory[]
-=== View Task Edit History Feature
+=== View Task Command History Feature
 
-View task edit history allows the user to view a list of all the edit history of a chosen task.
+Allows the user to view a list of all the command history of a chosen task.
 
 ==== Current Implementation
 
 Stores a parallel list `userInputHistoryTaskId` along `userInputHistory`, containing the taskId of `edit`/`completed`/`addtag`/`delete` commands.
-
 The list will store `0` for all other commands.
+
+image::taskhistoryseq.png[width="650", title="Sequence Diagram for `taskhistory` Command"]
+
+Given above (Figure 17) is the sequence diagram when `taskhistory` is called.
 
 It is facilitated by `CommandHistory` and implements the following operations:
 
-* `CommandHistory#addHistoryTaskId()` -- Adds taskId to the index that is the same as the `edit` command. Pads `0` for all other commands.
+* `CommandHistory#addHistoryTaskId()` -- Adds taskId to the index that is the same as the `edit`/`completed`/`addtag`/`delete` command. Pads `0` for all other commands.
 
-image::ViewTaskHistorySeq1.png[width="900", title="Behaviour of userTaskHistoryTaskId during `add` commands"]
+Step 1. When `taskhistory` is executed, `CommandHistory#getHistory()`, `CommandHistory#getHistoryTaskId()` and `Task#getTaskId()` is called.
+Retrieving a list of `userInputHistory`, a list of `userInputHistoryTaskId` and the taskID of a task, `taskId`
 
-Given above (Figure 12) is an example usage scenario of how the Task History mechanism behaves.
+Step 2. `userInputHistoryTaskId` will be iterated through.
 
-Note the behaviour of useTaskHistoryTaskId when all other commands (not `edit`) is called (Figure 12). `CommandHistory#addHistoryTaskId()` will not be called thus `userInputHistoryTaskId` will not be updated.
+* Step 2a. If `taskId` of the selected task appears within `userInputHistoryTaskId`, the index at that position will be used
+to retrieve the command string within `userInputHistory`. The string will then be appended to a ArrayList<string>, `commandlist`.
+
+Step 3. If `commandList` is not empty, it will be printed in reverse order(newest command first, oldest command last) to the user.
+
+==== Behaviour when commands are executed
+
+image::ViewTaskHistorySeq1.png[width="650", title="Behaviour of userTaskHistoryTaskId during `add` commands"]
+
+Note the behaviour of useTaskHistoryTaskId when all other commands (*not* `edit`/`completed`/`addtag`/`delete`) is called (Figure 18). `CommandHistory#addHistoryTaskId()` will not be called thus `userInputHistoryTaskId` will not be updated.
 However `userInputHistory` will still be updated as usual.
 
-image::ViewTaskHistorySeq2.png[width="900", title="Behaviour of userTaskHistoryTaskId during `edit` commands"]
+image::ViewTaskHistorySeq2.png[width="650", title="Behaviour of userTaskHistoryTaskId during `edit` commands"]
 
-Note the behaviour when a `edit` command  is called (Figure 13). `CommandHistory#addHistoryTaskId()` will be called thus `userInputHistoryTaskId` will be updated with the taskId of the task where the
+Note the behaviour when a `edit` command  is called (Figure 19). `CommandHistory#addHistoryTaskId()` will be called thus `userInputHistoryTaskId` will be updated with the taskId of the task where the
 `edit` command is called on. Observe that positions of previous non-`edit` command will be filled with `0`. `userInputHistory` will still be updated as usual.
-
-==== Sequence Diagram (`taskhistory`)
-
-image::taskhistoryseq.png[width="900", title="Sequence Diagram for `taskhistory` Command"]
-
-Given above (Figure 14) is the sequence diagram when `taskhistory` is called.
-
 
 ==== Design Considerations
 Two designs was considered for the implementation of `taskhistory`. The pros and cons of the designs are listed in the table below
@@ -572,32 +677,106 @@ and our *chosen option is Alternative 1*
 |===
 // end::taskhistory[]
 
-// tag::calendarview[]
-=== [Proposed] Calendar View
-[NOTE]
-As of v1.2, this feature is still in the process of implementation.
+// tag::completedanalyse[]
+=== Completed/Analyse feature
 
-==== Proposed Implementation
-The calendar leverages on the Google calendar API to enable this feature. A sample usage, along with the behaviour of the calendar model at each step, is given below:
+The `completed` feature allows for tasks to be marked as completed. +
+The `analyse` feature allows for viewing of statistics for each project, including:
 
-* Step 1: The user launches the application and executes `add n/Decide on Research Paper Topic d/Security-related by/01/01/2020 t/cs3235`. +
-* Step 2: The `AddCommandParser` parses out the strings for the name, description, deadline and tag. +
-* Step 3: `ParserUtil` checks that the input strings are valid, and initialises the `Name`, `Description`, `Deadline` and `Tag`. +
-* Step 4: A new `CalendarEvent` is initialised and will be displayed in the calendar GUI.
+* Number of tasks completed for each project
+* Percentage of each project completed
+
+==== Current Implementation
+The `completed` feature obtains the target task from `FilteredTaskList` based on the task index given by the user, and adds a `completed` tag to it. +
+Additionally, it implements the following operations:
+
+* `VersionedProject#commit()` — Saves the current project state in its history
+* `VersionedProjectList#commit()` — Saves the current project list state in its history
+
+These operations are exposed in the Model interface as `Model#commitProject()` and `Model#commitProjectList()` respectively.
+
+Given below is an example usage scenario and how the completed/analyse mechanism behaves at each step.
+
+Step 1. The user launches the application. `projectList` will be populated by invoking `StorageManager#readProjectList`.
+
+
+Step 2. The user selects a project. `setProject()` is invoked based on `filteredProjectList`, and the tasks for that project are displayed via invoking `filteredTaskList`.
+
+Step 3. The user marks a task as completed by entering `completed` followed by the index of the task.
+
+.. `lastShownList` of all tasks in the current project is obtained from `Model` using `getFilteredTaskList()`.
+.. Two identical tasks, `targetTask` and `taskToComplete`, are created based on `lastShownList` using the index from user input.
+.. Tags of `taskToComplete` are obtained using `getTags()` and checked if they contain a `completed` tag. If it does not, this indicates that the task has not been completed yet, and a `completed` tag will be added.
+
+The following sequence diagram shows how the completed operation works:
+
+image::Completed.png[width="800", title="Sequence Diagram for `completed` Command"]]
+
+{blank} +
+
+Step 4. The user goes back to project level using `listproject`. `setProject` is invoked to sync `VersionedProject` with `VersionedProjectList`.
+
+Step 5. The user enters `analyse` to view statistics of all the projects.
+
+.. `filteredProjects` is obtained from `getFilteredProjectList()`.
+.. For each project in `filteredProjects`, `filteredTasks` is obtained from `getTaskList()`.
+.. For each task in `filteredTasks`, `getTags()` is invoked to check if the task has a `completed` tag.
+.. The result returned is the number of tasks completed in each project, and the percentage of each project completed.
+
+The following sequence diagram shows how the analyse operation works:
+
+image::Analyse.png[width="800", title="Sequence Diagram for `analyse` Command"]]
 
 ==== Design Considerations
 
-===== Aspect: Navigation of calendar feature
+===== Aspect: Implementation of `completed` feature
 
-* **Alternative 1 (current choice):** Keyboard arrows (up, down, left, right) to toggle between dates.
-** Pros: Easier to implement and fits the project direction of focusing on CLI.
-** Cons: Less user-friendly to toggle to a date far in the future.
-* **Alternative 2:** Keyboard arrows and scroll wheel.
-** Pros: More user-friendly.
-** Cons: More things to factor in during implementation, and possibly more issues as well.
+Two designs were considered for the implementation of `completed`. The pros and cons of the designs are listed in the table below
+and our *chosen option is Alternative 1*.
+|===
+| |Alternative 1 | Alternative 2
+|Design
+|`completed` tag added to task, which remains visible in Task List.
+|Task saved to Storage and removed from display in Task List.
 
+|Pros
+|Adding a specific tag to the existing task can be done using existing `addTag()`.
+|`DeleteCommand` can be used to delete task from Task List.
 
-// end::calendarview[]
+|Cons
+|Completed task needed to be updated in Task List and Project List.
+|Storage needs to keep track of all the completed tasks and be able to separate them based on the projects they were under.
+
+|Implementation Choice
+|*Implemented* +
+This option allows for the user to still be able to view which tasks have been completed, which helps to gauge their own progress.
+|
+|===
+
+{blank} +
+
+Two designs were considered for the implementation of `analyse`. The pros and cons of the designs are listed in the table below
+and our *chosen option is Alternative 2*.
+|===
+| |Alternative 1 | Alternative 2
+|Design
+|`analyse` can only display statistics for one project at a time.
+|`analyse` can display statistics for all project at one go.
+
+|Pros
+|Easier as only need to iterate through one project's tasks.
+|User can easily view progress on all projects with one command.
+
+|Cons
+|User will need to select each project and call `analyse` separately.
+|More complicated as need to iterate through all tasks in all projects.
+
+|Implementation Choice
+|
+|*Implemented* +
+User will experience greater convenience and ease of use if one command can display statistics across all projects.
+|===
+// end::completedanalyse[]
 
 === Logging
 
@@ -950,11 +1129,9 @@ _{More to be added}_
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
+.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` installed.
 .  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-_{More to be added}_
 
 [appendix]
 == Glossary
@@ -964,23 +1141,6 @@ Windows, Linux, Unix, OS-X
 
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
-
-[appendix]
-== Product Survey
-
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
 
 [appendix]
 == Instructions for Manual Testing
@@ -996,15 +1156,13 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample projects and task. The window size may not be optimum.
 
 . Saving window preferences
 
 .. Resize the window to an optimum size. Move the window to a different location. Close the window.
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
-
-_{ more test cases ... }_
 
 === Deleting a task
 
@@ -1018,4 +1176,123 @@ _{ more test cases ... }_
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
    Expected: Similar to previous.
 
-_{ more test cases ... }_
+=== Importing projects
+
+. Import new projects from an external JSON file
+
+.. Prerequisites: JSON file to import should exist and should not contain any duplicate projects.
+.. Test case: `import ./data/import.json` +
+   Expected: New projects will be added to the list and displayed at Project List panel.
+.. Test case: `import ./data/filethatdoesnotexist.json` +
+   Expected: No new projects are added to the list as JSON file does not exists.
+.. Other incorrect import commands to try: `import`
+
+=== Exporting projects
+
+. Export multiple projects to an external JSON file
+
+.. Prerequisites: At least one project should exist in project list.
+.. Test case: `export i/1 o/./data/export.json` +
+   Expected: Project at index 1 and its tasks will be exported to specified JSON file.
+.. Test case: `export i/1,2 o/./data/export.json` +
+   Expected: Projects at index 1 and 2 and its tasks will be exported to specified JSON file.
+.. Other incorrect export commands to try: `export`, `export i/x o/./data/export.json` (where x is larger than the list size)
+
+. Export selected project to an external JSON file
+
+.. Prerequisites: At least one project should exist in project list. Select a project to export using the `select _x_` command from project level (where _x_ is the project ID).
+.. Test case: `export o/./data/export.json` +
+   Expected: Selected project and its tasks will be exported to specified JSON file.
+.. Other incorrect export commands to try: `export`
+
+=== Compare Task
+
+. Compare a task which was previously edited
+
+.. Prerequisites: The task must exist. `edit` command should be executed on the selected task before and there must be a change in one or more of the following: name, deadline or description.
+.. Test case: `compare 1` +
+Expected: Task at index 1 will be being compared against the version before it was edited on. Showing you the differences of what was edited.
+.. Other incorrect export commands to try: `compare x` where `x` is an index out of bounds or not a number but a string.
+
+. Compare a task which was previously *not* edited
+.. Prerequisites: The task must exist. The selected task should not be edited before.
+.. Test case: `compare 1` +
+Expected: Task at index 1 will be being compared against the version before it was edited on. Since there is no previous version of it.
+.. Other incorrect export commands to try: `compare x` where `x` is an index out of bounds or not a number but a string.
+
+=== Task History
+
+. View the command history for a specific task where `edit`/`completed`/`addtag`/`delete` has been executed before.
+.. Prerequisites: The task must exist. `edit`/`completed`/`addtag`/`delete` command should be executed on the selected task before.
+.. Test case: `taskhistory 1` +
+Expected: A list of commands (`edit`/`completed`/`addtag`/`delete`) previously entered for the select task will be shown. Latest command will be on top
+while oldest command will be at the bottom.
+.. Other incorrect export commands to try: `taskhistory x` where `x` is an index out of bounds or not a number but a string.
+
+. View the command history for a specific task where `edit`/`completed`/`addtag`/`delete` has *not* been executed before.
+.. Prerequisites: The task must exist. `edit`/`completed`/`addtag`/`delete` command should *not* have executed on the selected task before.
+.. Test case: `compare 1`
+Expected:  Since `edit`/`completed`/`addtag`/`delete` has not been executed on the task before, "You have not yet entered any commands for this task." will be shown.
+.. Other incorrect export commands to try: `taskhistory x` where `x` is an index out of bounds or not a number but a string.
+
+=== List tags
+. List all tags and their associated tasks.
+
+.. Prerequisites:
+    * At least one task should exist in project list
+    * Users should have already nagivated to task level
+.. Test case: `listtag` +
+   Expected: All tags and their associated tasks are displayed at the Result box. Users may need to scroll down to see the full list
+.. Test case: `listtag x` (where x is anything after `listtag`) +
+   Expected: X is ignored and all tags and their associated tasks are displayed at the Result box. Users may need to scroll down to see the full list.
+
+=== Define tags
+
+. Create new group tag
+
+.. Prerequisites: At least one project should exist in project list
+.. Test case: `definetag gt/Close Milestone t/ReleaseJar t/SubmitReport` +
+   Expected: "Group tag created: Close Milestone" will be displayed at the Result box.
+.. Test case: `definetag gt/Consultation t/PrepareDemo t/PrepareQuestions` +
+   Expected: "Group tag created: Consultation" will be displayed at the Result box.
+.. Test case: `definetag gt/Consultation gt/name2 t/PrepareDemo t/PrepareQuestions` +
+   Expected: "Group tag created: name2" will be displayed at the Result box.
+.. Test case: `definetag gt/duplicatename t/differenttag` +
+   Expected: No group tag will be created and the Result box will display "Group tag Consultation already exists in the group tag list" error.
+.. Other incorrect define tag commands to try: `definetag`
+
+=== Add tags
+
+. Add group tag to task
+
+.. Prerequisites:
+    * At least one task should exist in project list
+    * Users should have already nagivated to task level
+.. Test case: `addtag 1 gt/Consultation` +
+   Expected: Task box will show the updated task with newly added tags from the Consultation group tag.
+.. Test case: `addtag 1 gt/Consultation gt/ExtraGroup` +
+   Expected: Task box will show the updated task with newly added tags from the ExtraGroup group tag.
+.. Test case: `addtag 1 gt/NonExistentTag` +
+   Expected: No group tag will be applied to task and the Result box will display "Group tag NonExistentTag not found, please use definetag to add them first." error.
+.. Other incorrect add tag commands to try: `addtag`, `addtag x gt/Consultation` (where x is not a valid index)
+
+=== Completing a task
+
+. Adds `completed` tag to task
+
+.. Prerequisites:
+    * At least one task should exist in selected project
+    * Users should have already navigated to task level
+.. Test case: `completed 1` +
+   Expected: Task Box displays the updated task with a newly added `completed` tag.
+.. Test case: `completed` +
+   Expected: No `completed` tag is added to any task in Task Box. Results Box displays error message "The task index provided is invalid".
+.. Other incorrect completed commands to try: `completed 1 2`, `completed`, `completed x` (where x is not a valid index)
+
+=== Analysing projects
+
+. Displays number of completed tasks for each project, and percentage of each project completed
+
+.. Test case: `analyse` +
+   Expected: Results Box displays "<Name of project>: x tasks completed. (Percentage of project completed: yy.y%)", with the fields matching the details and statistics for each project.
+.. Note that the addition of parameters (e.g. `analyse 1`, `analyse -5` etc.) will automatically be ignored and still result in the correct execution of `analyse`.

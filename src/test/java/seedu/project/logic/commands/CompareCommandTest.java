@@ -30,7 +30,7 @@ public class CompareCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_validIndexWithEdit() {
+    public void execute_validIndexWithEdit_success() {
 
         model.setProject(model.getFilteredProjectList().get(0));
         model.setSelectedProject(model.getFilteredProjectList().get(0));
@@ -84,7 +84,7 @@ public class CompareCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex() {
+    public void execute_invalidIndex_failure() {
 
         model.setProject(model.getFilteredProjectList().get(0));
         model.setSelectedProject(model.getFilteredProjectList().get(0));
@@ -99,7 +99,7 @@ public class CompareCommandTest {
     }
 
     @Test
-    public void execute_validIndexWithNoEdit() {
+    public void execute_validIndexWithNoEdit_success() {
 
         model.setProject(model.getFilteredProjectList().get(0));
         model.setSelectedProject(model.getFilteredProjectList().get(0));

@@ -15,13 +15,11 @@ import seedu.project.model.UserPrefs;
 import seedu.project.model.project.Project;
 
 public class ListTagCommandTest {
-
     private Model model = new ModelManager(getTypicalProjectList(), new Project(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
-
     @Test
-    public void execute_notAtTaskLevel_failure() {
+    public void execute_listAtProjectLevel_failure() {
         model.setSelectedTask(null);
         LogicManager.setState(false);
         ListTagCommand listTagCommand = new ListTagCommand();
@@ -39,9 +37,7 @@ public class ListTagCommandTest {
         expectedModel.setSelectedProject(model.getFilteredProjectList().get(0));
 
         LogicManager.setState(true);
-        assertCommandSuccess(new ListTagCommand(), model, commandHistory, model.getFilteredTagList(), expectedModel);
+        assertCommandSuccess(new ListTagCommand(), model, commandHistory, model.getTagWithTaskList(), expectedModel);
     }
-
-
 }
 
