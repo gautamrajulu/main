@@ -47,7 +47,8 @@ public class AnalyseCommandTest {
 
         AnalyseCommand analyseCommand = new AnalyseCommand();
         String expectedMessage = "Sample Project 1: 1 tasks completed. (Percentage of project completed: 16.7%)\n"
-                + "Sample Project 2: 0 tasks completed. (Percentage of project completed: 0.0%)\n";
+                + "Sample Project 2: 0 tasks completed. (Percentage of project completed: 0.0%)\n"
+                + "Sample Project 3: 0 tasks completed. (Percentage of project completed: 0.0%)\n";
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.commitProject();
