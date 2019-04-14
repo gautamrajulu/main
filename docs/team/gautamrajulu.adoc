@@ -25,8 +25,7 @@ I contributed to the development of NoteNote via two functions, sortDeadline and
 
 * *Minor enhancement*: improved the `list command` to allow it to work on both the task level and the project level. Also added a `listprojects` command which navigated to the project list from the task list.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
-
+* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=gautamrajulu[Functional code]]
 * *Other contributions*:
 
 ** Project management:
