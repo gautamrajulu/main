@@ -10,6 +10,9 @@ import java.util.Comparator;
 
 import org.junit.Test;
 
+
+import javafx.collections.transformation.SortedList;
+import javafx.collections.ObservableList;
 import seedu.project.commons.core.Messages;
 import seedu.project.logic.CommandHistory;
 import seedu.project.logic.LogicManager;
@@ -18,8 +21,6 @@ import seedu.project.model.ModelManager;
 import seedu.project.model.UserPrefs;
 import seedu.project.model.project.Project;
 import seedu.project.model.project.VersionedProject;
-import javafx.collections.transformation.SortedList;
-import javafx.collections.ObservableList;
 import seedu.project.model.task.Task;
 
 public class SortByDeadlineCommandTest {
