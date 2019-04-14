@@ -8,7 +8,7 @@ image::docs/images/Ui.png[width="600"]
 endif::[]
 
 ifndef::env-github[]
-image::docs/images/Ui.png[width="600"]
+image::images/Ui.png[width="600"]
 endif::[]
 
 * This is a desktop task management application for Computing students who need to manage multiple projects simultaneously.
