@@ -503,6 +503,32 @@ image::sequenceDiagramList.png[width="800", title="Sequence Diagram for `list` C
 |===
 // end::list[]
 
+// tag::listprojects[]
+=== List Projects Feature
+==== Current Implementation
+
+Step 1: User uses listproject to navigate from the task level to the project level
+
+Step 2: Uses `LogicManager#setState()` to set display the project level
+
+Step 3: Syncs versionedProject with versionedProjectList using
+
+This results in the relavent panels updating to show all projects and hiding the task panel
+
+==== Design Considerations
+|===
+| |Alternative 1
+|Design
+|Changes `LogicManager` state and hides the task panel
+
+|Pros
+|Easy to implement
+
+|Cons
+|Simple command with no cons
+|===
+// end::listprojects[]
+
 // tag::sortDeadline[]
 === SortDeadline Feature
 ==== Current Implementation
@@ -519,7 +545,7 @@ Step 4: The list of tasks in `Model` is cleared using `Model#clearTasks()`
 Step 5: The list of tasks are entered individually into model from the `sortedList` by using a loop and the
 `Model#addTask()`
 
-image::sequenceDiagramList.png[width="800", title="Sequence Diagram for `list` Command"]
+image::sequenceDiagramSortDeadline.png[width="800", title="Sequence Diagram for `sortDeadline` Command"]
 
 ==== Design Considerations
 Two designs was considered for the implementation of `sortDeadline`.
