@@ -71,8 +71,7 @@ public class TypicalTasks {
 
     public static final Task PRESENTATION = new TaskBuilder().withName("Oral Presentation")
             .withDescription("Oral presentation based on report 1")
-            .withDeadline("05-05-2019").withTags("PRESENTATION" +
-                    "").build();
+            .withDeadline("05-05-2019").withTags("PRESENTATION").build();
 
 
     public static final Project SAMPLE1 = new ProjectBuilder().withTask(GROUP_MEETING, PRINT,
@@ -124,7 +123,6 @@ public class TypicalTasks {
 
     public static List<Project> getTypicalProjects() {
         return new ArrayList<>(Arrays.asList(SAMPLE1, SAMPLE2, SAMPLE3));
-//        return new ArrayList<>(Arrays.asList(SAMPLE1, SAMPLE2));
     }
 
     public static List<Task> getTypicalTasks() {
