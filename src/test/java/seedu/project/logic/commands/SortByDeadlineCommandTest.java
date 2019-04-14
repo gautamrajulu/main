@@ -11,8 +11,9 @@ import java.util.Comparator;
 import org.junit.Test;
 
 
-import javafx.collections.transformation.SortedList;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
+
 import seedu.project.commons.core.Messages;
 import seedu.project.logic.CommandHistory;
 import seedu.project.logic.LogicManager;
