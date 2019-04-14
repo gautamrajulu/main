@@ -41,5 +41,28 @@
       "deadline": "01-01-2019",
       "tagged": ["TYPICAL"]
     } ]
+  }, {
+    "name" : "Sample Project 3",
+    "tasks" : [ {
+      "name": "Report 1 submission",
+      "description": "Submit report via LumiNUS",
+      "deadline": "05-04-2019",
+      "tagged": ["REPORT"]
+    }, {
+      "name": "Final Report",
+      "description": "Final report presentation via hardcopy",
+      "deadline": "02-01-2020",
+      "tagged": ["REPORT"]
+    }, {
+      "name": "Report 2 submission",
+      "description": "Submit report via LumiNUS",
+      "deadline": "02-07-2019",
+      "tagged": ["REPORT"]
+    }, {
+      "name": "Oral Presentation",
+      "description": "Oral presentation based on report 1",
+      "deadline": "05-05-2019",
+      "tagged": ["PRESENTATION"]
+    } ]
   } ]
 }

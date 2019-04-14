@@ -56,10 +56,30 @@ public class TypicalTasks {
             .withDescription("attend tutorial at utown classroom")
             .withDeadline("01-01-2019").withTags("TUTORIAL").build();
 
+    // Manually added for SortByDeadlineCommandTest
+    public static final Task REPORT1 = new TaskBuilder().withName("Report Submission")
+            .withDescription("Submit report via LumiNUS")
+            .withDeadline("05-04-2019").build();
+
+    public static final Task REPORTFINAL = new TaskBuilder().withName("Report Submission")
+            .withDescription("Submit report via Hardcopy")
+            .withDeadline("02-01-2020").build();
+
+    public static final Task REPORT2 = new TaskBuilder().withName("Report Submission")
+            .withDescription("Submit report via LumiNUS")
+            .withDeadline("02-07-2019").build();
+
+    public static final Task PRESENTATION = new TaskBuilder().withName("Report Submission")
+            .withDescription("Submit report via LumiNUS")
+            .withDeadline("05-05-2019").build();
+
+
     public static final Project SAMPLE1 = new ProjectBuilder().withTask(GROUP_MEETING, PRINT,
             TEACHING_FEEDBACK, CONSULTATION, LECTURE, TUTORIAL).withName("Sample Project 1").build();
     public static final Project SAMPLE2 = new ProjectBuilder().withTask(REPORT_SUBMISSION)
             .withName("Sample Project 2").build();
+    public static final Project SAMPLE3 = new ProjectBuilder().withTask(REPORT1, REPORTFINAL,
+            REPORT2, PRESENTATION).withName("Sample Project 3").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task CS2101_MILESTONE = new TaskBuilder().withName(VALID_NAME_CS2101)
@@ -102,7 +122,7 @@ public class TypicalTasks {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(SAMPLE1, SAMPLE2));
+        return new ArrayList<>(Arrays.asList(SAMPLE1, SAMPLE2, SAMPLE3));
     }
 
     public static List<Task> getTypicalTasks() {
