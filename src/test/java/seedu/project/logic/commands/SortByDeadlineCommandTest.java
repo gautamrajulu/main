@@ -5,6 +5,11 @@ import static seedu.project.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.project.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.project.testutil.TypicalTasks.getTypicalProjectList;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
+
 import org.junit.Test;
 
 import seedu.project.commons.core.Messages;
@@ -16,15 +21,6 @@ import seedu.project.model.UserPrefs;
 import seedu.project.model.project.Project;
 import seedu.project.model.project.VersionedProject;
 import seedu.project.model.task.Task;
-
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
-
-
-import java.util.ArrayList;
-import java.util.Comparator;
-
-
 
 public class SortByDeadlineCommandTest {
     private Model model = new ModelManager(getTypicalProjectList(), new Project(), new UserPrefs());
