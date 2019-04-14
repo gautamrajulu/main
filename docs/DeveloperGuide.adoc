@@ -411,13 +411,13 @@ Building on top of the Undo/Redo feature, it is facilitated by `VersionedProject
 
 * `VersionedProject#compareTask()` -- Compares the chosen task with its previous version if it exist.
 
-image::compareseq.png[width="700", title="Sequence Diagram for `compare` Command"]
+image::compareseq.png[width="650", title="Sequence Diagram for `compare` Command"]
 
 Given above (Figure 10) is the sequence diagram when `compare` is called.
 
 These operations are exposed in the `Model` interface as `Model#compareTask()`.
 
-image::compare1.png[width="700", title="Example of VersionedProject when `edit` on Task B"]
+image::compare1.png[width="650", title="Example of VersionedProject when `edit` on Task B"]
 
 Given above (Figure 11.) is an example usage scenario and how the Compare Task mechanism behaves.
 
@@ -429,7 +429,7 @@ Step 2. The index will then be used by `CompareCommand#CommandResult()` to retri
 
 Step 3. `VersionedProject#compareTask()` will retrieve the unique `taskId` of the chosen task.
 
-image::compare2.png[width="700", title="Process of how `compare` command will flow"]
+image::compare2.png[width="650", title="Process of how `compare` command will flow"]
 
 Step 4. `VersionedProject#compareTask()` will iterate through all the the tasks within each project state. The `taskId`
 will be used to determine if the task encountered during the iteration is the same as the chosen task (Figure 12, A).
@@ -624,9 +624,9 @@ Allows the user to view a list of all the command history of a chosen task.
 Stores a parallel list `userInputHistoryTaskId` along `userInputHistory`, containing the taskId of `edit`/`completed`/`addtag`/`delete` commands.
 The list will store `0` for all other commands.
 
-image::taskhistoryseq.png[width="700", title="Sequence Diagram for `taskhistory` Command"]
+image::taskhistoryseq.png[width="650", title="Sequence Diagram for `taskhistory` Command"]
 
-Given above (Figure 14) is the sequence diagram when `taskhistory` is called.
+Given above (Figure 17) is the sequence diagram when `taskhistory` is called.
 
 It is facilitated by `CommandHistory` and implements the following operations:
 
@@ -644,14 +644,14 @@ Step 3. If `commandList` is not empty, it will be printed in reverse order(newes
 
 ==== Behaviour when commands are executed
 
-image::ViewTaskHistorySeq1.png[width="700", title="Behaviour of userTaskHistoryTaskId during `add` commands"]
+image::ViewTaskHistorySeq1.png[width="650", title="Behaviour of userTaskHistoryTaskId during `add` commands"]
 
-Note the behaviour of useTaskHistoryTaskId when all other commands (*not* `edit`/`completed`/`addtag`/`delete`) is called (Figure 15). `CommandHistory#addHistoryTaskId()` will not be called thus `userInputHistoryTaskId` will not be updated.
+Note the behaviour of useTaskHistoryTaskId when all other commands (*not* `edit`/`completed`/`addtag`/`delete`) is called (Figure 18). `CommandHistory#addHistoryTaskId()` will not be called thus `userInputHistoryTaskId` will not be updated.
 However `userInputHistory` will still be updated as usual.
 
-image::ViewTaskHistorySeq2.png[width="700", title="Behaviour of userTaskHistoryTaskId during `edit` commands"]
+image::ViewTaskHistorySeq2.png[width="650", title="Behaviour of userTaskHistoryTaskId during `edit` commands"]
 
-Note the behaviour when a `edit` command  is called (Figure 16). `CommandHistory#addHistoryTaskId()` will be called thus `userInputHistoryTaskId` will be updated with the taskId of the task where the
+Note the behaviour when a `edit` command  is called (Figure 19). `CommandHistory#addHistoryTaskId()` will be called thus `userInputHistoryTaskId` will be updated with the taskId of the task where the
 `edit` command is called on. Observe that positions of previous non-`edit` command will be filled with `0`. `userInputHistory` will still be updated as usual.
 
 ==== Design Considerations
