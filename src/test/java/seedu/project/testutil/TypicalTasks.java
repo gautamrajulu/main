@@ -57,20 +57,20 @@ public class TypicalTasks {
             .withDeadline("01-01-2019").withTags("TUTORIAL").build();
 
     // Manually added for SortByDeadlineCommandTest
-    public static final Task REPORT1 = new TaskBuilder().withName("Report Submission 1")
+    public static final Task REPORT1 = new TaskBuilder().withName("Report 1 submission")
             .withDescription("Submit report via LumiNUS")
             .withDeadline("05-04-2019").build();
 
-    public static final Task REPORTFINAL = new TaskBuilder().withName("Report Submission 2")
-            .withDescription("Submit report via Hardcopy")
+    public static final Task REPORTFINAL = new TaskBuilder().withName("Final Report")
+            .withDescription("Final report presentation via hardcopy")
             .withDeadline("02-01-2020").build();
 
-    public static final Task REPORT2 = new TaskBuilder().withName("Report Submission 3")
+    public static final Task REPORT2 = new TaskBuilder().withName("Report 2 submission")
             .withDescription("Submit report via LumiNUS")
             .withDeadline("02-07-2019").build();
 
-    public static final Task PRESENTATION = new TaskBuilder().withName("Report Submission 4")
-            .withDescription("Submit report via LumiNUS")
+    public static final Task PRESENTATION = new TaskBuilder().withName("Oral Presentation")
+            .withDescription("Oral presentation based on report 1")
             .withDeadline("05-05-2019").build();
 
 
