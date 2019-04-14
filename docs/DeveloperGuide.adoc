@@ -472,15 +472,33 @@ and our *chosen option is Alternative 1*
 === List Feature
 ==== Current Implementation
 
-Step 1: User uses list feature in task level to list all tasks and in project level to list all projects/
+Step 1: User uses list feature in task level to list all tasks and in project level to list all projects
 
-Step 2: Program retrieves an updated version of `Model#filteredTaskList()` via `Model#updateFilteredTaskList()`.
+Step 2: List checks if the program is in the task level or project level by `LogicManager#getState()`
+
+Step 3:
+
+* If the program is in the project level, it updates the `Model#filteredProjectList` using
+`Model#updateFilteredProjectList` and the predicate `Model#PREDICATE_SHOW_ALL_PROJECTS`.
+
+* If the program is in the task level, it updates the `Model#filteredTaskList` using the `Model#updateFilteredTaskList`
+and the predicate `Model#PREDICATE_SHOW_ALL_TASKS`.
+
+This results in the relavent panels updating to show all tasks (if entered in the task level)
+or all projects (if entered in the project level)
 
 ==== Design Considerations
+|===
+| |Alternative 1
+|Design
+|Command which check which level it is currently on and lists projects or tasks based on it.
 
-* **Current Choice: ** Check which level the program is on before retrieving the relevant list and displaying it
+|Pros
+|No need for two separate functions for listing tasks or listing projects
 
-** Pros: Single command for two levels
+|Cons
+|Implementation is more prone to bugs and harder to debug
+|===
 // end::list[]
 
 // tag::listtag[]
