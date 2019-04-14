@@ -487,6 +487,8 @@ and the predicate `Model#PREDICATE_SHOW_ALL_TASKS`.
 This results in the relavent panels updating to show all tasks (if entered in the task level)
 or all projects (if entered in the project level)
 
+image::sequenceDiagramList.png[width="800", title="Sequence Diagram for `list` Command"]
+
 ==== Design Considerations
 |===
 | |Alternative 1
@@ -500,6 +502,44 @@ or all projects (if entered in the project level)
 |Implementation is more prone to bugs and harder to debug
 |===
 // end::list[]
+
+// tag::sortDeadline[]
+=== SortDeadline Feature
+==== Current Implementation
+
+Step 1: Sort command should be done in the task level to ensure this,
+`LogicManager.getState()` is executed and user is asked to move to task level if command was entered in the project level.
+
+Step 2: The list of tasks is obtained via `Model#getFilteredTaskLIst() and stored in a observable list `filteredTasks`
+
+Step 3: `filteredTasks` is sorted via the provided comparator and stored as a sorted list `sortedList`
+
+Step 4: The list of tasks in `Model` is cleared using `Model#clearTasks()`
+
+Step 5: The list of tasks are entered individually into model from the `sortedList` by using a loop and the
+`Model#addTask()`
+
+image::sequenceDiagramList.png[width="800", title="Sequence Diagram for `list` Command"]
+
+==== Design Considerations
+Two designs was considered for the implementation of `sortDeadline`.
+The pros and cons of the designs are listed in the table below and our chosen option is Alternative 1
+|===
+| |Alternative 1| Alternative 2
+|Design
+|Sort would be permanent
+|Sort would be temporary
+
+|Pros
+|User would have to use sort function less often
+|Would impact other functions lesser
+
+|Cons
+|Harder to implement as it would affect other functions
+|Less user friendly
+
+|===
+// end::sortDeadline[]
 
 // tag::listtag[]
 === List Tag feature
@@ -539,6 +579,8 @@ and our *chosen option is Alternative 1*
 |A large `Model` might result in a slow system performance.
 |`ListTagCommand` will be cluttered and many of its functions will not be reusable.
 |===
+
+
 // end::listtag[]
 
 // tag::definetag[]
