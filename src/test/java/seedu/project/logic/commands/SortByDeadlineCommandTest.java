@@ -7,8 +7,6 @@ import static seedu.project.testutil.TypicalTasks.getTypicalProjectList;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 
 import org.junit.Test;
 
@@ -21,6 +19,9 @@ import seedu.project.model.UserPrefs;
 import seedu.project.model.project.Project;
 import seedu.project.model.project.VersionedProject;
 import seedu.project.model.task.Task;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 public class SortByDeadlineCommandTest {
     private Model model = new ModelManager(getTypicalProjectList(), new Project(), new UserPrefs());
@@ -76,7 +77,7 @@ public class SortByDeadlineCommandTest {
 
         ArrayList<Task> properList = new ArrayList<Task>();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             properList.add(sortedList.get(i));
         }
 
@@ -93,7 +94,7 @@ public class SortByDeadlineCommandTest {
         expectedModel.commitProject();
 
         //this will not work if user clicks on a different project while on task level??? lock UI at prev panel
-        if (expectedModel.getProject().getClass().equals(VersionedProject .class)) {
+        if (expectedModel.getProject().getClass().equals(VersionedProject.class)) {
             expectedModel.setProject(expectedModel.getSelectedProject(), (VersionedProject) expectedModel.getProject());
         } else {
             expectedModel.setProject(expectedModel.getSelectedProject(), (Project) expectedModel.getProject());
