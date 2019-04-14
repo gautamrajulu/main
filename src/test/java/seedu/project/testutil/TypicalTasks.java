@@ -57,19 +57,19 @@ public class TypicalTasks {
             .withDeadline("01-01-2019").withTags("TUTORIAL").build();
 
     // Manually added for SortByDeadlineCommandTest
-    public static final Task REPORT1 = new TaskBuilder().withName("Report Submission")
+    public static final Task REPORT1 = new TaskBuilder().withName("Report Submission 1")
             .withDescription("Submit report via LumiNUS")
             .withDeadline("05-04-2019").build();
 
-    public static final Task REPORTFINAL = new TaskBuilder().withName("Report Submission")
+    public static final Task REPORTFINAL = new TaskBuilder().withName("Report Submission 2")
             .withDescription("Submit report via Hardcopy")
             .withDeadline("02-01-2020").build();
 
-    public static final Task REPORT2 = new TaskBuilder().withName("Report Submission")
+    public static final Task REPORT2 = new TaskBuilder().withName("Report Submission 3")
             .withDescription("Submit report via LumiNUS")
             .withDeadline("02-07-2019").build();
 
-    public static final Task PRESENTATION = new TaskBuilder().withName("Report Submission")
+    public static final Task PRESENTATION = new TaskBuilder().withName("Report Submission 4")
             .withDescription("Submit report via LumiNUS")
             .withDeadline("05-05-2019").build();
 
@@ -123,6 +123,7 @@ public class TypicalTasks {
 
     public static List<Project> getTypicalProjects() {
         return new ArrayList<>(Arrays.asList(SAMPLE1, SAMPLE2, SAMPLE3));
+//        return new ArrayList<>(Arrays.asList(SAMPLE1, SAMPLE2));
     }
 
     public static List<Task> getTypicalTasks() {
